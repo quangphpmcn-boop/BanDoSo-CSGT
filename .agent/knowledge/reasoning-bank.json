@@ -1,0 +1,16 @@
+{
+    "$version": "2.0",
+    "$description": "Source Framework Reasoning Bank — aggregated patterns from all projects. Auto-populated by /sync-knowledge workflow.",
+    "patterns": [],
+    "evolution_clusters": [],
+    "stats": {
+        "total_patterns": 0,
+        "success_rate": 0.0,
+        "top_domains": [],
+        "avg_confidence": 0.0,
+        "patterns_evolved_to_skills": 0,
+        "last_evolution_check": null,
+        "last_sync_from_project": null,
+        "sync_count": 0
+    }
+}

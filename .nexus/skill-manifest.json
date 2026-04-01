@@ -1,0 +1,30 @@
+{
+    "tech_stack": [
+        "html",
+        "css",
+        "javascript",
+        "leaflet"
+    ],
+    "kept_categories": [
+        "workflow",
+        "nexus",
+        "quality",
+        "frontend",
+        "languages",
+        "architecture",
+        "devops",
+        "security",
+        "testing"
+    ],
+    "kept_skills_summary": "67 skills across 9 categories",
+    "pruned_categories": [
+        "ai",
+        "backend",
+        "data",
+        "database",
+        "mobile"
+    ],
+    "pruned_skills_count": 29,
+    "pruned": true,
+    "pruned_at": "2026-03-31T21:18:52+07:00"
+}

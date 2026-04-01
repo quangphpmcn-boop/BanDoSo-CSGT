@@ -1,0 +1,29 @@
+﻿# Dependencies
+node_modules/
+package-lock.json
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Nexus Framework
+.nexus/memory/
+.nexus/logs/usage-log.md
+.nexus/session-handover.md
+
+# Serena
+.serena/
+
+# Agent internals (keep .agent/ tracked for workflow definitions)
+# But ignore maintenance logs
+.agent/maintenance/usage-logger.md
+
+# Temp/scripts
+*.pyc
+__pycache__/

@@ -1,0 +1,17 @@
+{
+    "$version": "2.0",
+    "$description": "Reasoning Bank v2 — structured pattern storage with evolution tracking for Nexus self-learning. Auto-populated by /execute and /learn workflows.",
+    "patterns": [],
+    "evolution_clusters": [],
+    "stats": {
+        "total_patterns": 0,
+        "success_rate": 0.0,
+        "top_domains": [],
+        "avg_confidence": 0.0,
+        "patterns_evolved_to_skills": 0,
+        "last_evolution_check": null,
+        "last_sync_to_source": null,
+        "last_sync_from_project": null,
+        "sync_count": 0
+    }
+}

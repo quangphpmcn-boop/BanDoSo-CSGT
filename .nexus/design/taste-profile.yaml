@@ -1,0 +1,28 @@
+# Taste Profile — Bandoso CSGT Map
+
+DESIGN_VARIANCE: 3       # Clean, chuẩn mực (institutional gov tool)
+MOTION_INTENSITY: 3      # Tĩnh (GIS map, no complex animations)
+VISUAL_DENSITY: 7        # Dày đặc (data-dense dashboard)
+ARCHETYPE: standard      # Standard Premium
+SKILL_OVERLAY: none      # No minimalist overlay
+MODE: light              # Light mode only
+BRAND_ASSET: "docs/trống đồng.jpg"
+BRAND_COLOR: "#D4A017"   # Gold — matching trống đồng
+
+# Chosen Direction
+CHOSEN_PROPOSAL: C
+DESIGN_SYSTEM_NAME: "The Sovereign Lens"
+STITCH_PROJECT_ID: "16493281108125156030"
+STITCH_SCREEN_ID: "a7f18355ae714263811adce7da2eb3ad"
+STITCH_DS_ASSET: "assets/342ed40f039b48fd91885f8f16e72280"
+
+# Fonts
+HEADLINE_FONT: "Public Sans"
+BODY_FONT: "Inter"
+
+# Key Palette
+PRIMARY: "#795900"
+PRIMARY_CONTAINER: "#D4A017"
+SURFACE: "#F8F9FA"
+ON_SURFACE: "#191C1D"
+TERTIARY: "#185EAF"

@@ -1,0 +1,103 @@
+{
+  "name": "nexus",
+  "version": "3.7.0",
+  "description": "Unified Agentic Development Framework for Antigravity IDE",
+  "project": {
+    "language": "vi"
+  },
+  "bilingual": {
+    "user_language": "vi",
+    "technical_language": "en",
+    "rule": "Communicate with user in user_language. Code, XML plans, commit messages, variable/function names, and technical logs must be in technical_language."
+  },
+  "workflow": {
+    "mode": "interactive",
+    "depth": "standard",
+    "auto_advance": false,
+    "research": true,
+    "plan_check": true,
+    "verifier": true,
+    "guide": true
+  },
+  "elicitation": {
+    "depth": "balanced",
+    "depths": {
+      "thorough": "Hỏi chi tiết tất cả — user chỉ định mọi thứ",
+      "balanced": "AI đề xuất + user duyệt — cân bằng tốc độ và chính xác",
+      "quick": "AI đề xuất, chỉ hỏi khi mơ hồ — nhanh nhất"
+    }
+  },
+  "agents": {
+    "parallelization": true,
+    "max_parallel": 3,
+    "max_retries": 2,
+    "turn_limits": {
+      "architect": 15,
+      "designer": 12,
+      "planner": 10,
+      "executor": 20,
+      "reviewer": 15,
+      "debugger": 15
+    }
+  },
+  "memory": {
+    "provider": "serena",
+    "base_path": ".nexus/memory",
+    "tools": {
+      "read": "read_memory",
+      "write": "write_memory",
+      "edit": "edit_memory",
+      "list": "list_memories",
+      "delete": "delete_memory"
+    }
+  },
+  "serena": {
+    "symbolic_tools": true,
+    "mode_switching": true,
+    "onboarding": true,
+    "fallback": "file-based"
+  },
+  "maintenance": {
+    "enabled": true,
+    "log_path": ".nexus/logs",
+    "track": [
+      "agents",
+      "skills",
+      "workflows",
+      "memory",
+      "mcp"
+    ]
+  },
+  "git": {
+    "atomic_commits": true,
+    "commit_docs": true
+  },
+  "performance": {
+    "max_file_lines": 500,
+    "warn_on_create": true,
+    "reasoning_bank_max_patterns": 200,
+    "reasoning_bank_prune_days": 30
+  },
+  "evolution": {
+    "auto_learn_on_end": true,
+    "confidence_decay_days": 30,
+    "min_cluster_size": 2,
+    "min_cluster_confidence": 0.7,
+    "auto_prune_threshold": 0.2,
+    "sync_to_source": {
+      "enabled": true,
+      "auto_sync_on_end": true,
+      "sync_reasoning_bank": true,
+      "sync_skill_amendments": true
+    }
+  },
+  "health_checks": {
+    "check_config_integrity": true,
+    "check_mcp": true,
+    "check_workflow_compliance": true,
+    "check_agent_balance": true,
+    "check_skill_usage": true,
+    "check_reasoning_bank": true,
+    "check_disk": true
+  }
+}

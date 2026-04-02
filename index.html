@@ -38,9 +38,44 @@
                     <h1 class="header-title">BẢN ĐỒ SỐ PHÒNG CẢNH SÁT GIAO THÔNG</h1>
                 </div>
             </div>
+            <div class="header-actions">
+                <button class="header-edit-btn" id="header-edit-btn" title="Chỉnh sửa đơn vị" style="display:none;">
+                    ✏️ Chỉnh sửa
+                </button>
+            </div>
         </div>
         <div class="header-gold-bar"></div>
     </header>
+
+    <!-- Floating Edit Toolbar -->
+    <div class="edit-toolbar hidden" id="edit-toolbar">
+        <div class="edit-toolbar-header">
+            <span class="edit-toolbar-title">✏️ CHỈNH SỬA</span>
+            <button class="edit-toolbar-close" id="edit-toolbar-close" aria-label="Đóng">✕</button>
+        </div>
+        <div class="edit-toolbar-section">
+            <div class="edit-toolbar-label">TUYẾN ĐƯỜNG</div>
+            <div class="edit-toolbar-actions">
+                <button class="edit-action-btn" id="btn-route-add" data-action="add" title="Thêm tuyến quản lý">
+                    <span class="edit-action-icon">➕</span>
+                    <span>Thêm tuyến</span>
+                </button>
+                <button class="edit-action-btn" id="btn-route-remove" data-action="remove" title="Bớt tuyến quản lý">
+                    <span class="edit-action-icon">➖</span>
+                    <span>Bớt tuyến</span>
+                </button>
+            </div>
+        </div>
+        <div class="edit-toolbar-divider"></div>
+        <div class="edit-toolbar-section">
+            <button class="edit-action-btn wide" id="btn-edit-info" title="Sửa thông tin đơn vị">
+                📝 Sửa thông tin
+            </button>
+            <button class="edit-action-btn wide" id="btn-edit-location" title="Sửa vị trí trụ sở">
+                📍 Sửa vị trí đơn vị
+            </button>
+        </div>
+    </div>
 
     <!-- Main Layout -->
     <main class="app-main">
@@ -93,6 +128,9 @@
             </div>
         </div>
     </main>
+
+    <!-- Turf.js for GIS operations -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"

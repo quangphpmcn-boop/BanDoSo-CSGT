@@ -27,3 +27,13 @@ Desktop.ini
 # Temp/scripts
 *.pyc
 __pycache__/
+
+# Dev-only files
+pack.ps1
+demo-ql5.html
+data/*.bak
+data/*.pbf-bak
+scripts/
+docs/
+*.py
+read_excel.js

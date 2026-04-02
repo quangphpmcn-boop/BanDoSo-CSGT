@@ -53,7 +53,7 @@
         ]
     },
     "_quyhoach": {
-        "doi_dt_1_qh": {
+        "qh_dt1": {
             "waterways": [
                 "Sông Cấm",
                 "Sông Ruột Lợn",
@@ -62,10 +62,13 @@
                 "Kênh Cái Tráp",
                 "Kênh Hà Nam",
                 "Sông Kinh Môn",
-                "Sông Tam Bạc"
-            ]
+                "Sông Tam Bạc",
+                "Sông Rế",
+                "Sông Phù Long"
+            ],
+            "_note": "Thêm: Luồng Ba Mom, Luồng Lạch Huyện, Luồng phía Bắc Cát Bà, Lạch Cái Viềng, Lạch Hào Quang, Tuyến ven biển đảo Cát Bà — chưa có trong OSM GeoJSON"
         },
-        "doi_dt_2_qh": {
+        "qh_dt2": {
             "waterways": [
                 "Sông Văn Úc",
                 "Sông Thái Bình",
@@ -79,16 +82,19 @@
                 "Sông Tứ Kỳ (Cửu Yên)",
                 "Sông Đĩnh Đào",
                 "Sông Cầu Xe"
-            ]
+            ],
+            "_note": "Thêm: Sông Cửu Yên, Sông Ghẽ — chưa có trong OSM GeoJSON. Sông Lai Vu = Sông Lai trong OSM"
         },
-        "tram_bach_dang_qh": {
+        "qh_dtram": {
             "waterways": [
                 "Sông Đá Bạc",
                 "Sông Bạch Đằng",
                 "Sông Giá",
                 "Sông Kinh Thầy",
-                "Sông Thải"
-            ]
+                "Sông Thải",
+                "Sông Hàn"
+            ],
+            "_note": "Thêm: Sông Mạo Khê, Sông Phi Liệt, Sông Đước — chưa có trong OSM GeoJSON"
         }
     }
 }

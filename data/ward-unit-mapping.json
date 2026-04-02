@@ -28,7 +28,8 @@
       "ĐT 351 (Ngã ba Núi Đèo — Bến phà Kiền)",
       "ĐT 352 (đến Cầu Lại Xuân)",
       "Đường liên tỉnh cầu Dinh"
-    ]
+    ],
+    "totalKm": 116.5
   },
   "qh_db2": {
     "wards": [
@@ -58,7 +59,8 @@
       "ĐT 351 (Phan Đăng Lưu)",
       "ĐT 360 (Hòang Quốc Việt)",
       "ĐT 353"
-    ]
+    ],
+    "totalKm": 103.6
   },
   "qh_db3": {
     "wards": [
@@ -93,7 +95,8 @@
       "Đường Tân Vũ — Lạch Huyện",
       "Đường 356 (Cát Hải)",
       "Đường xuyên đảo Cát Bà — Gia Luận"
-    ]
+    ],
+    "totalKm": 151.4
   },
   "qh_db4": {
     "wards": [
@@ -147,7 +150,8 @@
       "ĐT 392C",
       "ĐT 396C",
       "ĐT 390"
-    ]
+    ],
+    "totalKm": 295.5
   },
   "qh_db5": {
     "wards": [
@@ -202,7 +206,8 @@
       "ĐT 390",
       "ĐT 398",
       "ĐT 398B"
-    ]
+    ],
+    "totalKm": 224
   },
   "qh_dt1": {
     "wards": [],
@@ -281,7 +286,8 @@
       "Tô Hiệu",
       "Chùa Vẽ",
       "Phan Chu Trinh"
-    ]
+    ],
+    "totalKm": 108.3
   },
   "db2": {
     "wards": [
@@ -308,7 +314,8 @@
       "Võ Nguyên Giáp",
       "Bùi Viện (từ ngã 6 Bùi Viện - Lê Hồng Phong đến cầu vượt Lãm Khê)",
       "Nguyễn Trường Tộ (Từ cầu vượt Lãm Khê đến ngã tư Nguyễn Trường Tộ - Quốc lộ 10)"
-    ]
+    ],
+    "totalKm": 379
   },
   "db3": {
     "wards": [
@@ -325,7 +332,8 @@
       "Trần Nguyên Hãn (từ ngã tư Trần Nguyên Hãn - Tô Hiệu đến ngã tư Trần Nguyên Hãn - Nguyễn Đức Cảnh)",
       "đường cầu Bính (Từ nút giao Nam cầu Bính đến giữa cầu Bính)",
       "đường từ nút giao Nam cầu Bính đến ngã năm Nguyễn Văn Linh - Tôn Đức Thắng"
-    ]
+    ],
+    "totalKm": 55.1
   },
   "db4": {
     "wards": [
@@ -342,7 +350,8 @@
       "Bùi Viện (từ đường liên phường đến ngã 6)",
       "đường liên phường",
       "đường Đặng Kinh"
-    ]
+    ],
+    "totalKm": 151.9
   },
   "db5": {
     "wards": [
@@ -404,7 +413,8 @@
       "Quốc lộ 5 từ Km 33+720 đến Km 77+830",
       "Quốc lộ 37 từ Km 42+100 đến Km 99+680",
       "Quốc lộ 17B từ Km1+337 đến Km 14+300"
-    ]
+    ],
+    "totalKm": 8130.6
   },
   "tram_an_hung": {
     "wards": [
@@ -423,7 +433,8 @@
       "Đường Hùng Vương (từ ngã tư Quán Toan đến ngã tư cầu vượt Quán Toan)",
       "Đường dẫn từ điểm qua ngã tư Long Thành",
       "Đường dẫn từ ngã ba cây xăng Bắc Hà"
-    ]
+    ],
+    "totalKm": 779.4
   },
   "tram_luu_kiem": {
     "wards": [
@@ -440,7 +451,8 @@
       "Quốc lộ 10: Từ Km6+500 đến Km20+400",
       "ĐT.359 từ ngã ba Tân Dương đến phà Rừng",
       "Đường cầu Bính từ giữa cầu Bính đến ngã tư Tân Dương"
-    ]
+    ],
+    "totalKm": 269
   },
   "tram_quang_trung": {
     "wards": [
@@ -474,7 +486,8 @@
       "Quốc lộ 10: Từ Km30+968 đến Km58+480",
       "Quốc lộ 37 từ Km 26+480 đến Km 42+100",
       "Các đường dẫn lên, xuống đường cao tốc HN-HP-QN thuộc xã An Quang"
-    ]
+    ],
+    "totalKm": 1869.9
   },
   "tram_dt_an_duong": {
     "wards": [],

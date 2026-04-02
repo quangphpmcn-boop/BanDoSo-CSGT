@@ -199,6 +199,7 @@ async function loadData() {
     console.log(`Loaded: ${wardGeoJSON.features.length} wards, ${unitsData.current.units.length} current units, ${roadsGeoJSON.features.length} roads, ${waterwaysGeoJSON.features.length} waterways, mapping OK`);
   } catch (err) {
     console.error('Error loading data:', err);
+    document.getElementById('unit-list').innerHTML = '<div style="padding:16px;color:#E53935;text-align:center">⚠️ Không tải được dữ liệu.<br>Kiểm tra kết nối mạng và thử lại.</div>';
   }
 }
 
@@ -686,6 +687,9 @@ function selectUnit(unitId) {
     hideWaterways();
   }
 
+  // Show HQ marker on map (read-only)
+  _showHqMarkerReadOnly(unit);
+
   // Zoom to unit's wards
   zoomToUnit(unitId);
 
@@ -705,6 +709,8 @@ function deselectUnit() {
   hideInfoPanel();
   hideRoads();
   hideWaterways();
+  // Remove HQ marker
+  if (hqMarker) { map.removeLayer(hqMarker); hqMarker = null; }
   refreshWardStyles();
 
   // Reset zoom
@@ -1122,31 +1128,61 @@ function showWaterways(unitId) {
     });
     waterwayLayer.addLayer(outline);
 
-    // Blue waterway line
-    const line = L.polyline(coords, {
-      color: style.color,
-      weight: style.weight, opacity: style.opacity,
-      lineCap: 'round', lineJoin: 'round',
-      dashArray: wwType === 'canal' ? '8 4' : null,
-      pane: 'waterwayPane'
-    });
-
-    // Label on longest segment
-    if (name && !labeledNames.has(name) && segmentsByName[name] && segmentsByName[name].id === f.properties.osm_id) {
-      line.bindTooltip(name, {
-        permanent: true, direction: 'center',
-        className: 'waterway-label'
+    if (addWaterwayMode) {
+      // ── EDIT MODE: selected segments are green, click to remove ──
+      const line = L.polyline(coords, {
+        color: '#2E7D32',
+        weight: style.weight + 1, opacity: 0.85,
+        lineCap: 'round', lineJoin: 'round',
+        pane: 'waterwayPane',
+        className: 'ww-segment-selected'
       });
-      labeledNames.add(name);
-    }
 
-    const pinLabel = isPinned ? ' 📌' : '';
-    const displayName = name || 'Không tên';
-    const removeAction = isPinned
-      ? `unpinWaterway('${osmId}')`
-      : `removeWaterway('${osmId}')`;
-    line.bindPopup(`<b>${displayName}${pinLabel}</b><br>Loại: ${wwType}<br>OSM ID: ${osmId}<br><button onclick="${removeAction}">❌ Bỏ tuyến này</button>`, { closeOnClick: false });
-    waterwayLayer.addLayer(line);
+      const displayName = name || 'Không tên';
+      line.bindTooltip(`✅ ${displayName} — click để bỏ`, { sticky: true });
+
+      line.on('click', () => {
+        if (isPinned) {
+          unpinWaterway(osmId);
+        } else {
+          removeWaterway(osmId);
+        }
+        if (addWaterwayMode) showCandidateWaterways();
+      });
+
+      // Label on longest segment
+      if (name && !labeledNames.has(name) && segmentsByName[name] && segmentsByName[name].id === f.properties.osm_id) {
+        labeledNames.add(name);
+      }
+
+      waterwayLayer.addLayer(line);
+    } else {
+      // ── NORMAL MODE: blue waterway with popup ──
+      const line = L.polyline(coords, {
+        color: style.color,
+        weight: style.weight, opacity: style.opacity,
+        lineCap: 'round', lineJoin: 'round',
+        dashArray: wwType === 'canal' ? '8 4' : null,
+        pane: 'waterwayPane'
+      });
+
+      // Label on longest segment
+      if (name && !labeledNames.has(name) && segmentsByName[name] && segmentsByName[name].id === f.properties.osm_id) {
+        line.bindTooltip(name, {
+          permanent: true, direction: 'center',
+          className: 'waterway-label'
+        });
+        labeledNames.add(name);
+      }
+
+      const pinLabel = isPinned ? ' 📌' : '';
+      const displayName = name || 'Không tên';
+      const removeAction = isPinned
+        ? `unpinWaterway('${osmId}')`
+        : `removeWaterway('${osmId}')`;
+      line.bindPopup(`<b>${displayName}${pinLabel}</b><br>Loại: ${wwType}<br>OSM ID: ${osmId}<br><button onclick="${removeAction}">❌ Bỏ tuyến này</button>`, { closeOnClick: false });
+      waterwayLayer.addLayer(line);
+    }
   });
 
   waterwayLayer.addTo(map);
@@ -1174,11 +1210,21 @@ function showWaterwayLegend() {
     legend.className = 'road-legend';
     document.getElementById('map').appendChild(legend);
   }
-  legend.innerHTML = `
-    <div class="road-legend-title">Phân cấp đường thuỷ</div>
-    <div class="road-legend-item"><span class="road-legend-line" style="background:#1565C0"></span> Sông</div>
-    <div class="road-legend-item"><span class="road-legend-line" style="background:#0288D1; border-style:dashed"></span> Kênh</div>
-  `;
+
+  if (addWaterwayMode) {
+    legend.innerHTML = `
+      <div class="road-legend-title">✏️ Chỉnh sửa tuyến</div>
+      <div class="road-legend-item"><span class="road-legend-line" style="background:#2E7D32;height:4px"></span> Đã chọn (click để bỏ)</div>
+      <div class="road-legend-item"><span class="road-legend-line" style="background:#78909C;height:3px;border-style:dashed"></span> Chưa chọn (click để thêm)</div>
+      <div class="road-legend-item"><span class="road-legend-line" style="background:#E53935;height:3px;border-style:dashed"></span> Đã bỏ (click để thêm lại)</div>
+    `;
+  } else {
+    legend.innerHTML = `
+      <div class="road-legend-title">Phân cấp đường thuỷ</div>
+      <div class="road-legend-item"><span class="road-legend-line" style="background:#1565C0"></span> Sông</div>
+      <div class="road-legend-item"><span class="road-legend-line" style="background:#0288D1; border-style:dashed"></span> Kênh</div>
+    `;
+  }
   legend.style.display = 'block';
 }
 
@@ -1187,36 +1233,7 @@ function hideWaterwayLegend() {
   if (legend) legend.style.display = 'none';
 }
 
-// ──────────────────────────────────────────────
-// Add Waterway Mode — manual waterway selection
-// ──────────────────────────────────────────────
-function toggleAddWaterwayMode() {
-  addWaterwayMode = !addWaterwayMode;
-  const btn = document.getElementById('btn-add-waterway');
-  if (btn) {
-    btn.classList.toggle('active', addWaterwayMode);
-    btn.textContent = addWaterwayMode ? '✕ Đóng chỉnh sửa' : '✏️ Chỉnh sửa tuyến';
-  }
-  // Toggle ward layer interactivity to prevent blocking waterway clicks
-  if (wardLayer) {
-    wardLayer.eachLayer(l => {
-      if (l.setStyle) l.setStyle({ interactive: !addWaterwayMode });
-      if (addWaterwayMode) {
-        l.closePopup();
-        l.closeTooltip();
-      }
-    });
-  }
-  if (addWaterwayMode) {
-    showCandidateWaterways();
-  } else {
-    if (candidateWaterwayLayer) {
-      map.removeLayer(candidateWaterwayLayer);
-      candidateWaterwayLayer = null;
-    }
-    if (selectedUnitId) showWaterways(selectedUnitId);
-  }
-}
+
 
 function showCandidateWaterways() {
   if (!selectedUnitId || !waterwaysGeoJSON) return;
@@ -1248,20 +1265,24 @@ function showCandidateWaterways() {
 
   candidates.forEach(feature => {
     const coords = feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-    const name = feature.properties.name || feature.properties.waterway_type || '(không tên)';
+    const name = feature.properties.name || '(không tên)';
     const osmId = String(feature.properties.osm_id);
     const wasRemoved = removed.has(osmId);
 
     const line = L.polyline(coords, {
-      color: wasRemoved ? '#E53935' : '#1976D2',
-      weight: wasRemoved ? 4 : 4,
-      opacity: wasRemoved ? 0.7 : 0.6,
-      dashArray: '8 6',
+      color: wasRemoved ? '#E53935' : '#78909C',
+      weight: wasRemoved ? 4 : 3,
+      opacity: wasRemoved ? 0.7 : 0.5,
+      dashArray: '6 4',
       interactive: true,
-      pane: 'candidatePane'
+      pane: 'candidatePane',
+      className: 'ww-segment-candidate'
     });
 
-    line.bindTooltip(`📌 Click để thêm: ${name}${wasRemoved ? ' (đã bỏ)' : ''}`, { sticky: true });
+    line.bindTooltip(
+      wasRemoved ? `🔄 ${name} — click để thêm lại` : `➕ ${name} — click để thêm`,
+      { sticky: true }
+    );
 
     line.on('click', () => {
       // If was removed from mapping → un-remove it
@@ -1278,7 +1299,7 @@ function showCandidateWaterways() {
       // Refresh everything
       showWaterways(selectedUnitId);
       showCandidateWaterways();
-      console.log(`${wasRemoved ? 'Restored' : 'Pinned'} waterway: ${name} (${osmId})`);
+      showEditToast(`✅ Đã thêm: ${name}`);
     });
 
     candidateWaterwayLayer.addLayer(line);
@@ -1664,10 +1685,9 @@ function zoomToUnit(unitId) {
   if (unit.type === 'duong_thuy') {
     const mapping = wardUnitMapping ? wardUnitMapping[unitId] : null;
     if (mapping && mapping.routes && mapping.routes.length > 0) {
-      // Try to fit to ward bounds if any, otherwise use general view
       const bounds = getUnitBounds(unitId);
       if (bounds) {
-        map.fitBounds(bounds, { padding: [40, 40], animate: true });
+        fitBoundsConstrained(bounds);
       } else {
         map.setView(HP_CENTER, 11, { animate: true });
       }
@@ -1678,8 +1698,19 @@ function zoomToUnit(unitId) {
   // Đường bộ: fit to ward jurisdiction area
   const bounds = getUnitBounds(unitId);
   if (bounds) {
-    map.fitBounds(bounds, { padding: [40, 40], animate: true });
+    fitBoundsConstrained(bounds);
   }
+}
+
+/** fitBounds with min zoom = 10, max zoom = 13 */
+function fitBoundsConstrained(bounds) {
+  map.fitBounds(bounds, { padding: [40, 40], maxZoom: 13, animate: true });
+  // Prevent zooming out too far for units with large/spread-out territory
+  setTimeout(() => {
+    if (map.getZoom() < 10) {
+      map.setView(bounds.getCenter(), 10, { animate: true });
+    }
+  }, 350);
 }
 
 // ──────────────────────────────────────────────
@@ -1701,7 +1732,7 @@ function showInfoPanel(unit) {
   const totalArea = demographics ? demographics.totalArea : 0;
   const totalPop = demographics ? demographics.totalPop : 0;
   const overrides = getUnitOverrides(unit.id);
-  const hqAddress = overrides.address || (unit.hq && unit.hq.name && unit.hq.name !== 'Chưa cập nhật' ? unit.hq.name : null);
+  const hqs = getUnitHqs(unit.id);
 
   // ── Type badge ──
   const typeBadges = {
@@ -1731,16 +1762,22 @@ function showInfoPanel(unit) {
   }
 
   if (unit.type === 'duong_bo') {
-    // Đường bộ: địa bàn, diện tích, dân số
+    // Đường bộ: địa bàn, diện tích, dân số, km tuyến
     if (wardCount > 0) {
       html += `<div class="ip-stat-card">
         <div class="ip-stat-number">${wardCount}</div>
         <div class="ip-stat-label">Địa bàn</div>
       </div>`;
     }
+    if (totalKm > 0) {
+      html += `<div class="ip-stat-card">
+        <div class="ip-stat-number">${totalKm.toLocaleString('vi-VN')}</div>
+        <div class="ip-stat-label">km tuyến</div>
+      </div>`;
+    }
     if (totalArea > 0) {
       html += `<div class="ip-stat-card">
-        <div class="ip-stat-number">${totalArea.toFixed(2)}</div>
+        <div class="ip-stat-number">${totalArea.toFixed(0)}</div>
         <div class="ip-stat-label">km²</div>
       </div>`;
     }
@@ -1771,10 +1808,22 @@ function showInfoPanel(unit) {
   html += '</div>';
 
   // ── ĐỊA CHỈ ĐƠN VỊ ──
-  html += `<div class="ip-detail-section">
-    <div class="ip-detail-label">📍 ĐỊA CHỈ ĐƠN VỊ</div>
-    <div class="ip-detail-value">${hqAddress || '<span class="ip-na">Chưa cập nhật</span>'}</div>
-  </div>`;
+  if (hqs.length > 0) {
+    const label = hqs.length > 1 ? `📍 ĐỊA CHỈ ĐƠN VỊ (${hqs.length} trụ sở)` : '📍 ĐỊA CHỈ ĐƠN VỊ';
+    html += `<div class="ip-detail-section">
+      <div class="ip-detail-label">${label}</div>
+      ${hqs.map((hq, i) => {
+      const addr = hq.name && hq.name !== 'Chưa cập nhật' ? hq.name : null;
+      const prefix = hqs.length > 1 ? `<strong>Trụ sở ${i + 1}:</strong> ` : '';
+      return `<div class="ip-detail-value">${prefix}${addr || '<span class="ip-na">Chưa cập nhật</span>'}</div>`;
+    }).join('')}
+    </div>`;
+  } else {
+    html += `<div class="ip-detail-section">
+      <div class="ip-detail-label">📍 ĐỊA CHỈ ĐƠN VỊ</div>
+      <div class="ip-detail-value"><span class="ip-na">Chưa cập nhật</span></div>
+    </div>`;
+  }
 
   // ── Content sections tailored by type ──
   if (unit.type === 'duong_bo') {
@@ -1988,7 +2037,11 @@ function cleanupEditSubMode() {
     selectedRouteLine = null;
   }
   editRouteSelection = null;
-  // Clean HQ marker
+  // Clean HQ markers (multi-HQ)
+  if (window._hqMarkers) {
+    window._hqMarkers.forEach(m => map.removeLayer(m));
+    window._hqMarkers = [];
+  }
   if (hqMarker) {
     map.removeLayer(hqMarker);
     hqMarker = null;
@@ -2114,42 +2167,170 @@ function enableInfoEditMode() {
   if (!selectedUnitId) return;
   const units = getActiveUnits();
   const unit = units.find(u => u.id === selectedUnitId);
-  if (unit) showInfoPanelEditable(unit);
+  if (unit) {
+    showInfoPanelEditable(unit);
+    // Also show HQ marker for location editing
+    _showHqMarker(unit);
+  }
 }
 
 function enableLocationEditMode() {
   if (!selectedUnitId) return;
   const units = getActiveUnits();
   const unit = units.find(u => u.id === selectedUnitId);
-  if (!unit || !unit.hq) return;
-  // Check for saved override position first, then unit data, then map center
-  const overrides = getUnitOverrides(selectedUnitId);
-  let lat, lng;
-  if (overrides.hq) {
-    lat = overrides.hq[0];
-    lng = overrides.hq[1];
-  } else if (unit.hq.lat != null && unit.hq.lng != null) {
-    lat = unit.hq.lat;
-    lng = unit.hq.lng;
-  } else {
-    // No saved position — use current map center
-    const center = map.getCenter();
-    lat = center.lat;
-    lng = center.lng;
+  if (!unit) return;
+  _showHqMarker(unit);
+  // Also show editable info panel with address input
+  showInfoPanelEditable(unit);
+}
+
+// ── Multi-HQ helper: get array of HQ objects for a unit ──
+function getUnitHqs(unitId) {
+  const overrides = getUnitOverrides(unitId);
+  const units = getActiveUnits();
+  const unit = units.find(u => u.id === unitId);
+
+  // Priority 1: overrides.hqs from localStorage (user-edited)
+  if (overrides.hqs && overrides.hqs.length > 0) {
+    return overrides.hqs;
   }
-  // Show draggable HQ marker
-  if (hqMarker) map.removeLayer(hqMarker);
-  hqMarker = L.marker([lat, lng], {
-    draggable: true,
-    icon: L.divIcon({ className: 'checkpoint-marker checkpoint-a', iconSize: [18, 18], iconAnchor: [9, 9] })
-  }).addTo(map);
-  hqMarker.bindTooltip('📍 Kéo để di chuyển trụ sở', { permanent: false, sticky: true });
-  hqMarker.on('dragend', (e) => {
-    const pos = e.target.getLatLng();
-    saveUnitOverride(selectedUnitId, 'hq', [pos.lat, pos.lng]);
-    showEditToast(`📍 Đã cập nhật vị trí: ${pos.lat.toFixed(5)}, ${pos.lng.toFixed(5)}`);
+  // Priority 2: Migrate old localStorage format
+  if (overrides.hq || overrides.address) {
+    const migrated = [{
+      name: overrides.address || (unit && unit.hq ? unit.hq.name : '') || '',
+      lat: overrides.hq ? overrides.hq[0] : null,
+      lng: overrides.hq ? overrides.hq[1] : null
+    }];
+    return migrated;
+  }
+  // Priority 3: unit.hqs array from JSON (new format)
+  if (unit && unit.hqs && unit.hqs.length > 0) {
+    return unit.hqs.map(function (h) {
+      return { name: h.name || '', lat: h.lat || null, lng: h.lng || null };
+    });
+  }
+  // Priority 4: unit.hq single object from JSON (old format)
+  if (unit && unit.hq && (unit.hq.lat != null || (unit.hq.name && unit.hq.name !== 'Chưa cập nhật'))) {
+    return [{ name: unit.hq.name || '', lat: unit.hq.lat, lng: unit.hq.lng }];
+  }
+  return [];
+}
+
+function saveUnitHqs(unitId, hqs) {
+  saveUnitOverride(unitId, 'hqs', hqs);
+}
+
+function _showHqMarkerReadOnly(unit) {
+  if (!unit) return;
+  // Remove existing markers
+  if (hqMarker) { map.removeLayer(hqMarker); hqMarker = null; }
+  if (window._hqMarkers) { window._hqMarkers.forEach(m => map.removeLayer(m)); }
+  window._hqMarkers = [];
+
+  const hqs = getUnitHqs(unit.id);
+  if (hqs.length === 0) return;
+
+  const hqIcon = L.divIcon({
+    className: 'hq-edit-marker',
+    html: '<div class="hq-marker-pin">📍</div><div class="hq-marker-pulse"></div>',
+    iconSize: [40, 40],
+    iconAnchor: [20, 38]
   });
-  showEditToast('📍 Kéo marker trên bản đồ để đặt vị trí trụ sở');
+
+  hqs.forEach((hq, idx) => {
+    if (hq.lat == null || hq.lng == null) return;
+    const marker = L.marker([hq.lat, hq.lng], {
+      draggable: false,
+      icon: hqIcon,
+      zIndexOffset: 1000
+    }).addTo(map);
+    const label = hqs.length > 1 ? `Trụ sở ${idx + 1}` : unit.name;
+    const addr = hq.name || '';
+    marker.bindTooltip(`${label}${addr ? '<br>' + addr : ''}`, {
+      permanent: false, sticky: false, offset: [15, -20], className: 'hq-tooltip'
+    });
+    window._hqMarkers.push(marker);
+  });
+  // Also set hqMarker to first for compatibility
+  if (window._hqMarkers.length > 0) hqMarker = window._hqMarkers[0];
+}
+
+function _showHqMarker(unit) {
+  if (!unit) return;
+  // Remove existing markers
+  if (hqMarker) { map.removeLayer(hqMarker); hqMarker = null; }
+  if (window._hqMarkers) { window._hqMarkers.forEach(m => map.removeLayer(m)); }
+  window._hqMarkers = [];
+
+  let hqs = getUnitHqs(unit.id);
+  // If no HQs exist, create one at map center
+  if (hqs.length === 0) {
+    const center = map.getCenter();
+    hqs = [{ name: '', lat: center.lat, lng: center.lng }];
+    saveUnitHqs(unit.id, hqs);
+  }
+
+  const hqIcon = L.divIcon({
+    className: 'hq-edit-marker',
+    html: '<div class="hq-marker-pin">📍</div><div class="hq-marker-pulse"></div>',
+    iconSize: [40, 40],
+    iconAnchor: [20, 38]
+  });
+
+  hqs.forEach((hq, idx) => {
+    const lat = hq.lat != null ? hq.lat : map.getCenter().lat;
+    const lng = hq.lng != null ? hq.lng : map.getCenter().lng;
+    const marker = L.marker([lat, lng], {
+      draggable: true,
+      icon: hqIcon,
+      zIndexOffset: 1000
+    }).addTo(map);
+    const label = hqs.length > 1 ? `Trụ sở ${idx + 1}` : 'Trụ sở';
+    marker.bindTooltip(`${label} — kéo để di chuyển`, { permanent: false, sticky: true, offset: [15, -20] });
+    marker.on('dragend', (e) => {
+      const pos = e.target.getLatLng();
+      const currentHqs = getUnitHqs(unit.id);
+      if (currentHqs[idx]) {
+        currentHqs[idx].lat = pos.lat;
+        currentHqs[idx].lng = pos.lng;
+        saveUnitHqs(unit.id, currentHqs);
+        showEditToast(`📍 Trụ sở ${idx + 1}: ${pos.lat.toFixed(5)}, ${pos.lng.toFixed(5)}`);
+      }
+    });
+    window._hqMarkers.push(marker);
+  });
+  if (window._hqMarkers.length > 0) hqMarker = window._hqMarkers[0];
+  showEditToast(`📍 ${hqs.length} trụ sở — kéo marker để di chuyển`);
+}
+
+function addNewHqLocation(unitId) {
+  const hqs = getUnitHqs(unitId);
+  const center = map.getCenter();
+  hqs.push({ name: '', lat: center.lat, lng: center.lng });
+  saveUnitHqs(unitId, hqs);
+  // Refresh markers and edit panel
+  const units = getActiveUnits();
+  const unit = units.find(u => u.id === unitId);
+  if (unit) {
+    _showHqMarker(unit);
+    showInfoPanelEditable(unit);
+  }
+}
+
+function removeHqLocation(unitId, idx) {
+  const hqs = getUnitHqs(unitId);
+  if (hqs.length <= 1) {
+    showEditToast('⚠️ Phải có ít nhất 1 trụ sở');
+    return;
+  }
+  hqs.splice(idx, 1);
+  saveUnitHqs(unitId, hqs);
+  const units = getActiveUnits();
+  const unit = units.find(u => u.id === unitId);
+  if (unit) {
+    _showHqMarker(unit);
+    showInfoPanelEditable(unit);
+  }
 }
 
 // ── Unit data overrides (stored in localStorage) ──
@@ -2171,66 +2352,83 @@ function saveUnitOverride(unitId, key, value) {
 
 // ── Editable Info Panel ──
 function showInfoPanelEditable(unit) {
+  const panel = document.getElementById('info-panel');
   const body = document.getElementById('info-panel-body');
   const overrides = getUnitOverrides(unit.id);
   const mapping = wardUnitMapping ? wardUnitMapping[unit.id] : null;
   const demographics = calculateUnitDemographics(unit.id);
   const personnel = overrides.personnel || unit.personnel || '';
-  const address = overrides.address || (unit.hq ? unit.hq.name : '') || '';
+  const hqs = getUnitHqs(unit.id);
 
   let html = '';
 
+  // Edit mode indicator
+  html += `<div class="ip-edit-badge">✏️ CHẾ ĐỘ CHỈNH SỬA</div>`;
+
   // Editable personnel
-  html += `<div class="info-hero-section">
-    <div class="info-hero-title">BIÊN CHẾ QUÂN SỐ</div>
-    <div class="info-editable">
-      <input type="number" id="edit-personnel" value="${personnel}" placeholder="Số đồng chí"
-        onchange="saveUnitOverride('${unit.id}', 'personnel', this.value)">
-    </div>
+  html += `<div class="ip-edit-section">
+    <label class="ip-edit-label" for="edit-personnel">👮 BIÊN CHẾ QUÂN SỐ</label>
+    <input type="number" id="edit-personnel" class="ip-edit-input" value="${personnel}" placeholder="Nhập số đồng chí..."
+      onchange="saveUnitOverride('${unit.id}', 'personnel', this.value)">
   </div>`;
 
-  // Editable address
-  html += `<div class="info-hero-section">
-    <div class="info-hero-title">ĐỊA CHỈ TRỤ SỞ</div>
-    <div class="info-editable">
-      <input type="text" id="edit-address" value="${address}" placeholder="Nhập địa chỉ..."
-        onchange="saveUnitOverride('${unit.id}', 'address', this.value)">
-    </div>
+  // Editable addresses — multi-HQ
+  html += `<div class="ip-edit-section">
+    <label class="ip-edit-label">📍 ĐỊA CHỈ TRỤ SỞ (${hqs.length || 0})</label>`;
+
+  if (hqs.length > 0) {
+    hqs.forEach((hq, idx) => {
+      const addr = (hq.name && hq.name !== 'Chưa cập nhật') ? hq.name : '';
+      const removeBtn = hqs.length > 1
+        ? `<button class="ip-hq-remove-btn" onclick="removeHqLocation('${unit.id}', ${idx})" title="Xóa trụ sở này">✕</button>`
+        : '';
+      html += `<div class="ip-hq-row">
+        <div class="ip-hq-index">${idx + 1}</div>
+        <input type="text" class="ip-edit-input ip-hq-input" value="${addr}" placeholder="Nhập địa chỉ trụ sở ${idx + 1}..."
+          onchange="(function(){ var hqs=getUnitHqs('${unit.id}'); hqs[${idx}].name=this.value; saveUnitHqs('${unit.id}',hqs); }).call(this)">
+        ${removeBtn}
+      </div>`;
+    });
+  }
+
+  html += `<button class="ip-hq-add-btn" onclick="addNewHqLocation('${unit.id}')">➕ Thêm trụ sở</button>
+    <div class="ip-edit-hint">Bấm 📍 Sửa vị trí đơn vị trên toolbar để kéo marker trên bản đồ</div>
   </div>`;
 
   // Demographics (read-only)
   if (demographics && (demographics.totalArea > 0 || demographics.totalPop > 0)) {
-    html += `<div class="info-hero-section">
-      <div class="info-hero-title">QUẢN LÝ ĐỊA BÀN</div>
-      <div class="info-stats-row">
-        ${demographics.totalArea > 0 ? `<div class="info-stat-item"><span class="icon">📐</span> ${demographics.totalArea.toFixed(2)} km²</div>` : ''}
-        ${demographics.totalPop > 0 ? `<div class="info-stat-item"><span class="icon">🏘️</span> ${demographics.totalPop.toLocaleString('vi-VN')} người</div>` : ''}
+    html += `<div class="ip-edit-section ip-readonly">
+      <div class="ip-edit-label">📊 QUẢN LÝ ĐỊA BÀN</div>
+      <div class="ip-edit-stats">
+        ${demographics.totalArea > 0 ? `<span>📐 ${demographics.totalArea.toFixed(2)} km²</span>` : ''}
+        ${demographics.totalPop > 0 ? `<span>🏘️ ${demographics.totalPop.toLocaleString('vi-VN')} người</span>` : ''}
       </div>
     </div>`;
   }
 
   // Wards (read-only for now)
   if (mapping && mapping.wards && mapping.wards.length > 0) {
-    html += `<div class="info-hero-section">
-      <div class="info-hero-title">ĐỊA BÀN (${mapping.wards.length} XÃ/PHƯỜNG)</div>
-      <div style="font-size:0.8125rem;color:var(--on-surface);line-height:1.6">
-        ${mapping.wards.join(', ')}
+    html += `<div class="ip-edit-section ip-readonly">
+      <div class="ip-edit-label">🏘️ ĐỊA BÀN (${mapping.wards.length} XÃ/PHƯỜNG)</div>
+      <div class="ip-ward-tags">
+        ${mapping.wards.map(w => `<span class="ip-ward-tag">${w}</span>`).join('')}
       </div>
     </div>`;
   }
 
   // Routes (read-only)
   if (mapping && mapping.routes && mapping.routes.length > 0) {
-    const routeLabel = unit.type === 'duong_thuy' ? 'TUYẾN SÔNG' : 'TUYẾN ĐƯỜNG';
-    html += `<div class="info-hero-section">
-      <div class="info-hero-title">${routeLabel} (${mapping.routes.length} TUYẾN)</div>
-      <ul class="info-route-list">
+    const routeLabel = unit.type === 'duong_thuy' ? '🚢 TUYẾN SÔNG' : '🛣️ TUYẾN ĐƯỜNG';
+    html += `<div class="ip-edit-section ip-readonly">
+      <div class="ip-edit-label">${routeLabel} (${mapping.routes.length} TUYẾN)</div>
+      <ul class="ip-route-list">
         ${mapping.routes.map(r => `<li>${r}</li>`).join('')}
       </ul>
     </div>`;
   }
 
   body.innerHTML = html;
+  panel.classList.remove('hidden');
 }
 
 // ──────────────────────────────────────────────

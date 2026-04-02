@@ -1326,3 +1326,330 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* ── Waterway Segment Edit States ── */
+.ww-segment-selected {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.ww-segment-selected:hover {
+  opacity: 1 !important;
+  stroke-width: 8 !important;
+}
+
+.ww-segment-candidate {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.ww-segment-candidate:hover {
+  opacity: 0.85 !important;
+  stroke-width: 5 !important;
+}
+
+/* ── HQ Edit Marker (Location Edit Mode) ── */
+.hq-edit-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.hq-marker-pin {
+  font-size: 32px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  cursor: grab;
+  text-align: center;
+  animation: hq-bounce 0.4s ease-out;
+}
+
+.hq-marker-pin:active {
+  cursor: grabbing;
+}
+
+.hq-marker-pulse {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(211, 47, 47, 0.25);
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+@keyframes hq-bounce {
+  0% {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(3px);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(-50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* ── Checkpoint Markers ── */
+.checkpoint-marker {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  cursor: grab;
+}
+
+.checkpoint-marker:active {
+  cursor: grabbing;
+}
+
+.checkpoint-a {
+  background: #1976D2;
+}
+
+.checkpoint-b {
+  background: #D32F2F;
+}
+
+/* ── Editable Info Panel Sections ── */
+.ip-edit-badge {
+  background: var(--gold-gradient);
+  color: #fff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  margin: 12px 16px 8px;
+}
+
+.ip-edit-section {
+  padding: 10px 16px;
+  border-top: 1px solid var(--outline-variant);
+}
+
+.ip-edit-section:first-of-type {
+  border-top: none;
+}
+
+.ip-edit-label {
+  display: block;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+  margin-bottom: 6px;
+}
+
+.ip-edit-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid var(--outline-variant);
+  border-radius: var(--radius-sm);
+  background: var(--surface-container-lowest);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ip-edit-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(121, 89, 0, 0.1);
+}
+
+.ip-edit-input::placeholder {
+  color: var(--outline);
+  font-style: italic;
+}
+
+.ip-edit-hint {
+  font-size: 0.6875rem;
+  color: var(--outline);
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.ip-edit-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8125rem;
+  color: var(--on-surface);
+}
+
+.ip-edit-section.ip-readonly {
+  opacity: 0.85;
+}
+
+/* ── Edit Status Bar ── */
+.edit-status-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--primary);
+  color: var(--on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 1500;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.status-text {
+  font-style: italic;
+}
+
+.status-btn {
+  padding: 4px 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.status-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Multi-HQ Edit UI ── */
+.ip-hq-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.ip-hq-index {
+  min-width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ip-hq-input {
+  flex: 1;
+}
+
+.ip-hq-remove-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: rgba(244, 67, 54, 0.15);
+  color: #F44336;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.ip-hq-remove-btn:hover {
+  background: rgba(244, 67, 54, 0.35);
+}
+
+.ip-hq-add-btn {
+  display: block;
+  width: 100%;
+  padding: 6px;
+  margin-top: 6px;
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: var(--primary);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.ip-hq-add-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--primary);
+}
+
+/* ── Accessibility: Focus Visible ── */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #F9A825;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(249, 168, 37, 0.3);
+}
+
+.toggle-btn:focus-visible {
+  outline-color: #F9A825;
+  z-index: 1;
+}
+
+.unit-card:focus-visible {
+  outline: 2px solid #F9A825;
+  outline-offset: -2px;
+}
+
+.info-panel-close:focus-visible,
+.edit-toolbar-close:focus-visible {
+  outline-color: #E53935;
+}
+
+/* ── Accessibility: Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

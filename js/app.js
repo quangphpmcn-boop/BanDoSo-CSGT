@@ -43,6 +43,11 @@ let roadsGeoJSON = null;     // road geometry data
 let roadLayer = null;        // active road overlay
 let addRoadMode = false;     // toggle: manual road selection mode
 let candidateRoadLayer = null; // layer for candidate noi_thi roads
+let waterwaysGeoJSON = null; // waterway geometry data
+let waterwayUnitMapping = null; // waterway-unit mapping
+let waterwayLayer = null;    // active waterway overlay
+let addWaterwayMode = false; // toggle: manual waterway selection mode
+let candidateWaterwayLayer = null; // layer for candidate waterway segments
 
 // Pinned roads: { unitId: Set<osm_id> } — persisted in localStorage
 function getPinnedRoads(unitId) {
@@ -56,6 +61,21 @@ function savePinnedRoads(unitId, set) {
     const data = JSON.parse(localStorage.getItem('pinnedRoads') || '{}');
     data[unitId] = [...set];
     localStorage.setItem('pinnedRoads', JSON.stringify(data));
+  } catch { }
+}
+
+// Pinned waterways: { unitId: Set<osm_id> } — persisted in localStorage
+function getPinnedWaterways(unitId) {
+  try {
+    const data = JSON.parse(localStorage.getItem('pinnedWaterways') || '{}');
+    return new Set(data[unitId] || []);
+  } catch { return new Set(); }
+}
+function savePinnedWaterways(unitId, set) {
+  try {
+    const data = JSON.parse(localStorage.getItem('pinnedWaterways') || '{}');
+    data[unitId] = [...set];
+    localStorage.setItem('pinnedWaterways', JSON.stringify(data));
   } catch { }
 }
 
@@ -78,6 +98,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderStats();
   renderSidebar();
   bindEvents();
+
+  // Pre-compute road filter caches in background (non-blocking)
+  _precomputeRoadCaches();
 });
 
 // ──────────────────────────────────────────────
@@ -108,13 +131,15 @@ function initMap() {
 // ──────────────────────────────────────────────
 async function loadData() {
   try {
-    const [unitsRes, wardsRes, boundaryRes, mappingRes, demoRes, roadsRes] = await Promise.all([
+    const [unitsRes, wardsRes, boundaryRes, mappingRes, demoRes, roadsRes, waterwaysRes, wwMappingRes] = await Promise.all([
       fetch('data/units.json'),
       fetch('data/haiphong-wards.geojson'),
       fetch('data/haiphong-boundary.geojson'),
       fetch('data/ward-unit-mapping.json'),
       fetch('data/ward-demographics.json'),
-      fetch('data/haiphong-roads.geojson')
+      fetch('data/haiphong-roads.geojson'),
+      fetch('data/haiphong-waterways.geojson'),
+      fetch('data/waterway-unit-mapping.json')
     ]);
 
     unitsData = await unitsRes.json();
@@ -123,8 +148,10 @@ async function loadData() {
     wardUnitMapping = await mappingRes.json();
     wardDemographics = await demoRes.json();
     roadsGeoJSON = await roadsRes.json();
+    waterwaysGeoJSON = await waterwaysRes.json();
+    waterwayUnitMapping = await wwMappingRes.json();
 
-    console.log(`Loaded: ${wardGeoJSON.features.length} wards, ${unitsData.current.units.length} current units, ${roadsGeoJSON.features.length} roads, mapping OK`);
+    console.log(`Loaded: ${wardGeoJSON.features.length} wards, ${unitsData.current.units.length} current units, ${roadsGeoJSON.features.length} roads, ${waterwaysGeoJSON.features.length} waterways, mapping OK`);
   } catch (err) {
     console.error('Error loading data:', err);
   }
@@ -600,8 +627,13 @@ function selectUnit(unitId) {
   // For đường bộ units: show roads overlay (ward labels stay visible)
   if (unit.type === 'duong_bo') {
     showRoads(unitId);
+    hideWaterways();
+  } else if (unit.type === 'duong_thuy') {
+    showWaterways(unitId);
+    hideRoads();
   } else {
     hideRoads();
+    hideWaterways();
   }
 
   // Zoom to unit's wards
@@ -618,6 +650,7 @@ function deselectUnit() {
   });
   hideInfoPanel();
   hideRoads();
+  hideWaterways();
   refreshWardStyles();
 
   // Reset zoom
@@ -646,71 +679,132 @@ function showWardLabels() {
 function showRoads(unitId) {
   hideRoads();
   if (!roadsGeoJSON || !roadsGeoJSON.features.length) return;
+  if (typeof turf === 'undefined') { console.warn('Turf.js not loaded'); return; }
 
-  // Collect actual ward polygons for this unit (not just bounding box)
   const mapping = wardUnitMapping ? wardUnitMapping[unitId] : null;
   if (!mapping || !mapping.wards || mapping.wards.length === 0) return;
 
-  const unitWardNames = mapping.wards.map(w => normalizeWardName(w));
-  const wardPolygons = []; // Array of coordinate rings [[lat,lng], ...]
-
-  wardLayer.eachLayer(layer => {
-    const wardName = getWardName(layer.feature);
-    if (!unitWardNames.includes(normalizeWardName(wardName))) return;
-
-    const geom = layer.feature.geometry;
-    if (geom.type === 'Polygon') {
-      wardPolygons.push(geom.coordinates[0]); // outer ring
-    } else if (geom.type === 'MultiPolygon') {
-      geom.coordinates.forEach(poly => wardPolygons.push(poly[0]));
-    }
-  });
-
-  if (wardPolygons.length === 0) return;
-
-  // Pre-compute bounding box for quick rejection
-  const unitBounds = getUnitBounds(unitId);
-  if (!unitBounds) return;
-
-  // Point-in-polygon (ray casting) — coords are [lng, lat] in GeoJSON
-  function isPointInPolygon(lng, lat, ring) {
-    let inside = false;
-    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-      const xi = ring[i][0], yi = ring[i][1];
-      const xj = ring[j][0], yj = ring[j][1];
-      if (((yi > lat) !== (yj > lat)) && (lng < (xj - xi) * (lat - yi) / (yj - yi) + xi)) {
-        inside = !inside;
-      }
-    }
-    return inside;
-  }
-
-  function isPointInAnyWard(lng, lat) {
-    for (const ring of wardPolygons) {
-      if (isPointInPolygon(lng, lat, ring)) return true;
-    }
-    return false;
-  }
-
-  // Filter roads: quoc_lo + duong_tinh in ward polygons, plus pinned noi_thi
-  const allowedClasses = ['quoc_lo', 'duong_tinh'];
+  // ── Check cache first (instant if pre-computed) ──
+  if (!window._roadFilterCache) window._roadFilterCache = {};
   const pinned = getPinnedRoads(unitId);
-  const filteredFeatures = roadsGeoJSON.features.filter(f => {
-    const cls = f.properties.road_class;
-    const osmId = String(f.properties.osm_id);
-    // Always show pinned roads regardless of class/location
-    if (pinned.has(osmId)) return true;
-    // Only show QL/ĐT within ward polygons
-    if (!allowedClasses.includes(cls)) return false;
-    const coords = f.geometry.coordinates;
-    // Quick reject: check bounding box first
-    const inBounds = coords.some(([lng, lat]) => unitBounds.contains([lat, lng]));
-    if (!inBounds) return false;
-    // Precise check: at least one coordinate inside actual ward polygon
-    return coords.some(([lng, lat]) => isPointInAnyWard(lng, lat));
+  const cacheKey = unitId + ':' + pinned.size;
+
+  if (window._roadFilterCache[cacheKey]) {
+    _renderRoads(window._roadFilterCache[cacheKey], unitId);
+    return;
+  }
+
+  // ── Not cached yet — compute with loading indicator ──
+  const mapEl = document.getElementById('map');
+  mapEl.style.opacity = '0.6';
+  mapEl.style.cursor = 'wait';
+
+  // Use setTimeout to unblock UI (show loading state first, compute next frame)
+  setTimeout(() => {
+    const result = _computeRoadFilter(unitId, pinned);
+    window._roadFilterCache[cacheKey] = result;
+    mapEl.style.opacity = '1';
+    mapEl.style.cursor = '';
+    if (selectedUnitId === unitId) { // Still selected?
+      _renderRoads(result, unitId);
+    }
+  }, 20);
+}
+
+// ── Core filtering logic (reusable for precompute & on-demand) ──
+function _computeRoadFilter(unitId, pinned) {
+  const t0 = performance.now();
+  const mapping = wardUnitMapping[unitId];
+  if (!mapping || !mapping.wards) return [];
+
+  // Build ward polygon array with pre-computed bboxes (cached)
+  if (!window._wardPolyCache) window._wardPolyCache = {};
+  let wardPolys = window._wardPolyCache[unitId];
+  if (!wardPolys) {
+    const wardSet = new Set(mapping.wards);
+    wardPolys = [];
+    wardGeoJSON.features.forEach(f => {
+      if (!f.properties.ten_xa || !wardSet.has(f.properties.ten_xa)) return;
+      try {
+        const feat = turf.feature(f.geometry);
+        const bb = turf.bbox(feat); // [minX, minY, maxX, maxY]
+        wardPolys.push({ feat, bb });
+      } catch (e) { }
+    });
+    window._wardPolyCache[unitId] = wardPolys;
+  }
+  if (wardPolys.length === 0) return [];
+
+  // Pre-filter: bbox + class
+  const unitBounds = getUnitBounds(unitId);
+  if (!unitBounds) return [];
+  const paddedBounds = unitBounds.pad(0.05);
+  const allowedClasses = ['quoc_lo', 'duong_tinh'];
+
+  const candidates = roadsGeoJSON.features.filter(f => {
+    if (pinned && pinned.has(String(f.properties.osm_id))) return true;
+    if (!allowedClasses.includes(f.properties.road_class)) return false;
+    return f.geometry.coordinates.some(([lng, lat]) => paddedBounds.contains([lat, lng]));
   });
 
-  if (filteredFeatures.length === 0 && !addRoadMode) return;
+  // Turf intersection with bbox pre-check per ward (skip ~80% of expensive calls)
+  const result = candidates.filter(f => {
+    if (pinned && pinned.has(String(f.properties.osm_id))) return true;
+    try {
+      const coords = f.geometry.coordinates;
+      // Compute road bbox
+      let rMinX = Infinity, rMinY = Infinity, rMaxX = -Infinity, rMaxY = -Infinity;
+      for (const [x, y] of coords) {
+        if (x < rMinX) rMinX = x; if (x > rMaxX) rMaxX = x;
+        if (y < rMinY) rMinY = y; if (y > rMaxY) rMaxY = y;
+      }
+      const roadLine = turf.lineString(coords);
+
+      for (const { feat, bb } of wardPolys) {
+        // Quick bbox overlap check (skip ward if no overlap)
+        if (rMaxX < bb[0] || rMinX > bb[2] || rMaxY < bb[1] || rMinY > bb[3]) continue;
+        if (turf.booleanIntersects(roadLine, feat)) return true;
+      }
+    } catch (e) { }
+    return false;
+  });
+
+  console.log(`Roads: ${result.length}/${candidates.length} (Turf) for ${unitId} in ${(performance.now() - t0).toFixed(0)}ms`);
+  return result;
+}
+
+// ── Pre-compute caches for all đường bộ units (background, non-blocking) ──
+function _precomputeRoadCaches() {
+  if (!roadsGeoJSON || !wardUnitMapping || !wardGeoJSON) return;
+  if (!window._roadFilterCache) window._roadFilterCache = {};
+
+  const units = getActiveUnits().filter(u => u.type === 'duong_bo');
+  let idx = 0;
+
+  function processNext() {
+    if (idx >= units.length) {
+      console.log(`✅ Road cache precomputed for ${units.length} đường bộ units`);
+      return;
+    }
+    const unit = units[idx++];
+    const pinned = getPinnedRoads(unit.id);
+    const cacheKey = unit.id + ':' + pinned.size;
+    if (!window._roadFilterCache[cacheKey]) {
+      window._roadFilterCache[cacheKey] = _computeRoadFilter(unit.id, pinned);
+    }
+    // Process next unit on next frame (non-blocking)
+    setTimeout(processNext, 10);
+  }
+
+  // Start precompute after page is fully interactive
+  setTimeout(processNext, 1000);
+}
+
+// ── Separated render function for cached results ──
+function _renderRoads(filteredFeatures, unitId) {
+  hideRoads();
+  if (!filteredFeatures || filteredFeatures.length === 0) return;
+  showRoadLegend();
 
   // Draw roads ordered by importance (nội thị first, đường tỉnh, quốc lộ on top)
   const order = ['noi_thi', 'duong_tinh', 'quoc_lo'];
@@ -788,9 +882,6 @@ function showRoads(unitId) {
   });
 
   roadLayer.addTo(map);
-  showRoadLegend();
-
-  console.log(`Roads: ${filteredFeatures.length} segments displayed for unit ${unitId}`);
 }
 
 function hideRoads() {
@@ -804,6 +895,243 @@ function hideRoads() {
   }
   addRoadMode = false;
   hideRoadLegend();
+}
+
+// ──────────────────────────────────────────────
+// Waterway Display (đường thuỷ units)
+// ──────────────────────────────────────────────
+const WATERWAY_STYLES = {
+  river: { color: '#1565C0', weight: 3, opacity: 0.85 },
+  canal: { color: '#0288D1', weight: 2.5, opacity: 0.8 },
+  tidal_channel: { color: '#0097A7', weight: 2.5, opacity: 0.8 }
+};
+
+function showWaterways(unitId) {
+  hideWaterways();
+  if (!waterwaysGeoJSON) return;
+
+  // Get waterway names for this unit
+  let mapping = waterwayUnitMapping ? waterwayUnitMapping[unitId] : null;
+  if (!mapping && waterwayUnitMapping && waterwayUnitMapping._quyhoach) {
+    mapping = waterwayUnitMapping._quyhoach[unitId];
+  }
+  const allowedNames = new Set(mapping && mapping.waterways ? mapping.waterways : []);
+  const pinned = getPinnedWaterways(unitId);
+
+  // Filter: name-matched OR pinned
+  const filtered = waterwaysGeoJSON.features.filter(f => {
+    const osm = String(f.properties.osm_id);
+    if (pinned.has(osm)) return true;
+    const name = f.properties.name || '';
+    return allowedNames.has(name);
+  });
+
+  if (filtered.length === 0) {
+    console.log(`No waterway features for unit ${unitId}`);
+    showWaterwayLegend();
+    return;
+  }
+
+  console.log(`Waterways: ${filtered.length} segments for unit ${unitId}`);
+
+  waterwayLayer = L.layerGroup();
+
+  // Find longest segment per unique name for label
+  const segmentsByName = {};
+  filtered.forEach(f => {
+    const name = f.properties.name;
+    if (!name) return;
+    const coords = f.geometry.coordinates;
+    const len = coords.reduce((sum, c, i) => {
+      if (i === 0) return 0;
+      const [x1, y1] = coords[i - 1];
+      const [x2, y2] = c;
+      return sum + Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+    }, 0);
+    if (!segmentsByName[name] || len > segmentsByName[name].len) {
+      segmentsByName[name] = { id: f.properties.osm_id, len };
+    }
+  });
+
+  const labeledNames = new Set();
+
+  filtered.forEach(f => {
+    const wwType = f.properties.waterway_type || 'river';
+    const style = WATERWAY_STYLES[wwType] || WATERWAY_STYLES.river;
+    const coords = f.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+    const name = f.properties.name || '';
+    const osmId = String(f.properties.osm_id);
+    const isPinned = pinned.has(osmId);
+
+    // White outline
+    const outline = L.polyline(coords, {
+      color: '#FFFFFF', weight: style.weight + 2, opacity: 0.4, interactive: false
+    });
+    waterwayLayer.addLayer(outline);
+
+    // Blue waterway line
+    const line = L.polyline(coords, {
+      color: isPinned ? '#00897B' : style.color,
+      weight: style.weight, opacity: style.opacity,
+      lineCap: 'round', lineJoin: 'round',
+      dashArray: wwType === 'canal' ? '8 4' : null
+    });
+
+    // Label on longest segment
+    if (name && !labeledNames.has(name) && segmentsByName[name] && segmentsByName[name].id === f.properties.osm_id) {
+      line.bindTooltip(name, {
+        permanent: true, direction: 'center',
+        className: 'waterway-label'
+      });
+      labeledNames.add(name);
+    }
+
+    const pinLabel = isPinned ? ' 📌' : '';
+    line.bindPopup(`<b>${name || 'Không tên'}${pinLabel}</b><br>Loại: ${wwType}<br>OSM ID: ${osmId}${isPinned ? `<br><button onclick="unpinWaterway('${osmId}')">❌ Bỏ ghim</button>` : ''}`);
+    waterwayLayer.addLayer(line);
+  });
+
+  waterwayLayer.addTo(map);
+  showWaterwayLegend();
+}
+
+function hideWaterways() {
+  if (waterwayLayer) {
+    map.removeLayer(waterwayLayer);
+    waterwayLayer = null;
+  }
+  if (candidateWaterwayLayer) {
+    map.removeLayer(candidateWaterwayLayer);
+    candidateWaterwayLayer = null;
+  }
+  addWaterwayMode = false;
+  hideWaterwayLegend();
+}
+
+function showWaterwayLegend() {
+  let legend = document.getElementById('waterway-legend');
+  if (!legend) {
+    legend = document.createElement('div');
+    legend.id = 'waterway-legend';
+    legend.className = 'road-legend';
+    document.getElementById('map').appendChild(legend);
+  }
+  legend.innerHTML = `
+    <div class="road-legend-title">Phân cấp đường thuỷ</div>
+    <div class="road-legend-item"><span class="road-legend-line" style="background:#1565C0"></span> Sông</div>
+    <div class="road-legend-item"><span class="road-legend-line" style="background:#0288D1; border-style:dashed"></span> Kênh</div>
+    <div class="road-legend-item"><span class="road-legend-line" style="background:#00897B"></span> Đã ghim 📌</div>
+    <button id="btn-add-waterway" class="btn-add-road${addWaterwayMode ? ' active' : ''}" onclick="toggleAddWaterwayMode()">
+      ${addWaterwayMode ? '✕ Đóng' : '➕ Thêm tuyến'}
+    </button>
+  `;
+  legend.style.display = 'block';
+}
+
+function hideWaterwayLegend() {
+  const legend = document.getElementById('waterway-legend');
+  if (legend) legend.style.display = 'none';
+}
+
+// ──────────────────────────────────────────────
+// Add Waterway Mode — manual waterway selection
+// ──────────────────────────────────────────────
+function toggleAddWaterwayMode() {
+  addWaterwayMode = !addWaterwayMode;
+  const btn = document.getElementById('btn-add-waterway');
+  if (btn) {
+    btn.classList.toggle('active', addWaterwayMode);
+    btn.textContent = addWaterwayMode ? '✕ Đóng' : '➕ Thêm tuyến';
+  }
+  if (addWaterwayMode) {
+    showCandidateWaterways();
+  } else {
+    if (candidateWaterwayLayer) {
+      map.removeLayer(candidateWaterwayLayer);
+      candidateWaterwayLayer = null;
+    }
+    if (selectedUnitId) showWaterways(selectedUnitId);
+  }
+}
+
+function showCandidateWaterways() {
+  if (!selectedUnitId || !waterwaysGeoJSON) return;
+  if (candidateWaterwayLayer) {
+    map.removeLayer(candidateWaterwayLayer);
+  }
+  candidateWaterwayLayer = L.layerGroup();
+
+  const pinned = getPinnedWaterways(selectedUnitId);
+
+  // Get names already assigned to this unit (to skip them from candidates)
+  let mapping = waterwayUnitMapping ? waterwayUnitMapping[selectedUnitId] : null;
+  if (!mapping && waterwayUnitMapping && waterwayUnitMapping._quyhoach) {
+    mapping = waterwayUnitMapping._quyhoach[selectedUnitId];
+  }
+  const assignedNames = new Set(mapping && mapping.waterways ? mapping.waterways : []);
+
+  // Show ALL waterway segments as candidates (excluding already-assigned and already-pinned)
+  const candidates = waterwaysGeoJSON.features.filter(f => {
+    const osmId = String(f.properties.osm_id);
+    if (pinned.has(osmId)) return false; // already pinned
+    const name = f.properties.name || '';
+    if (assignedNames.has(name)) return false; // already assigned by mapping
+    return true;
+  });
+
+  candidates.forEach(feature => {
+    const coords = feature.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+    const name = feature.properties.name || feature.properties.waterway_type || '(không tên)';
+    const osmId = String(feature.properties.osm_id);
+
+    const line = L.polyline(coords, {
+      color: '#78909C',
+      weight: 2,
+      opacity: 0.35,
+      dashArray: '6 4',
+      interactive: true
+    });
+
+    line.bindTooltip(`📌 Click để thêm: ${name}`, { sticky: true });
+
+    line.on('click', () => {
+      const p = getPinnedWaterways(selectedUnitId);
+      p.add(osmId);
+      savePinnedWaterways(selectedUnitId, p);
+      // Remove this candidate
+      candidateWaterwayLayer.removeLayer(line);
+      // Add to main waterway layer
+      const wwType = feature.properties.waterway_type || 'river';
+      const style = WATERWAY_STYLES[wwType] || WATERWAY_STYLES.river;
+      const outline2 = L.polyline(coords, {
+        color: '#FFFFFF', weight: style.weight + 2, opacity: 0.4, interactive: false
+      });
+      waterwayLayer.addLayer(outline2);
+      const pinnedLine = L.polyline(coords, {
+        color: '#00897B', weight: style.weight, opacity: style.opacity,
+        lineCap: 'round', lineJoin: 'round'
+      });
+      pinnedLine.bindTooltip(`${name} 📌`, { permanent: false, sticky: true });
+      pinnedLine.bindPopup(`<b>${name} 📌</b><br>Loại: ${wwType}<br><button onclick="unpinWaterway('${osmId}')">❌ Bỏ ghim</button>`, { closeOnClick: false });
+      waterwayLayer.addLayer(pinnedLine);
+      console.log(`Pinned waterway: ${name} (${osmId})`);
+    });
+
+    candidateWaterwayLayer.addLayer(line);
+  });
+
+  candidateWaterwayLayer.addTo(map);
+  console.log(`Candidate waterways: ${candidates.length} available for pinning`);
+}
+
+function unpinWaterway(osmId) {
+  if (!selectedUnitId) return;
+  const p = getPinnedWaterways(selectedUnitId);
+  p.delete(osmId);
+  savePinnedWaterways(selectedUnitId, p);
+  map.closePopup();
+  showWaterways(selectedUnitId);
+  if (addWaterwayMode) showCandidateWaterways();
 }
 
 function getUnitBounds(unitId) {

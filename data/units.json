@@ -1,0 +1,402 @@
+{
+    "current": {
+        "label": "Tổ chức hiện tại",
+        "units": [
+            {
+                "id": "tham_muu",
+                "name": "Đội Tham mưu",
+                "shortName": "TM",
+                "type": "van_phong",
+                "color": "#A1887F",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 32
+            },
+            {
+                "id": "tuyen_truyen",
+                "name": "Đội Tuyên truyền, điều tra giải quyết TN và xử lý VP",
+                "shortName": "TT",
+                "type": "van_phong",
+                "color": "#78909C",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 24
+            },
+            {
+                "id": "dang_ky",
+                "name": "Đội Đăng ký, quản lý phương tiện",
+                "shortName": "ĐK",
+                "type": "van_phong",
+                "color": "#9AA0A6",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 24
+            },
+            {
+                "id": "sat_hach",
+                "name": "Đội Sát hạch, cấp giấy phép lái xe",
+                "shortName": "SH",
+                "type": "van_phong",
+                "color": "#BDBDBD",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 36
+            },
+            {
+                "id": "db1",
+                "name": "Đội CSGT đường bộ số 1",
+                "shortName": "ĐB1",
+                "type": "duong_bo",
+                "color": "#4285F4",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 66
+            },
+            {
+                "id": "db2",
+                "name": "Đội CSGT đường bộ số 2",
+                "shortName": "ĐB2",
+                "type": "duong_bo",
+                "color": "#34A853",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 56
+            },
+            {
+                "id": "db3",
+                "name": "Đội CSGT đường bộ số 3",
+                "shortName": "ĐB3",
+                "type": "duong_bo",
+                "color": "#FA7B17",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 32
+            },
+            {
+                "id": "db4",
+                "name": "Đội CSGT đường bộ số 4",
+                "shortName": "ĐB4",
+                "type": "duong_bo",
+                "color": "#EA4335",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 51
+            },
+            {
+                "id": "tram_an_hung",
+                "name": "Trạm CSGT An Hưng",
+                "shortName": "Tr.AH",
+                "type": "duong_bo",
+                "color": "#E91E63",
+                "hq": {
+                    "name": "An Hưng",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 60
+            },
+            {
+                "id": "tram_luu_kiem",
+                "name": "Trạm CSGT Lưu Kiếm",
+                "shortName": "Tr.LK",
+                "type": "duong_bo",
+                "color": "#FF5722",
+                "hq": {
+                    "name": "Lưu Kiếm",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 47
+            },
+            {
+                "id": "tram_quang_trung",
+                "name": "Trạm CSGT Quang Trung",
+                "shortName": "Tr.QTr",
+                "type": "duong_bo",
+                "color": "#795548",
+                "hq": {
+                    "name": "Quang Trung",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 61
+            },
+            {
+                "id": "db5",
+                "name": "Đội CSGT đường bộ số 5",
+                "shortName": "ĐB5",
+                "type": "duong_bo",
+                "color": "#A142F4",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 84
+            },
+            {
+                "id": "tram_dt_an_duong",
+                "name": "Trạm CSĐT An Dương",
+                "shortName": "Tr.AD",
+                "type": "duong_thuy",
+                "color": "#24C1E0",
+                "hq": {
+                    "name": "An Dương",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 16
+            },
+            {
+                "id": "tram_dt_may_chi",
+                "name": "Trạm CSĐT Máy Chỉ",
+                "shortName": "Tr.MC",
+                "type": "duong_thuy",
+                "color": "#12B5CB",
+                "hq": {
+                    "name": "Máy Chỉ",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 14
+            },
+            {
+                "id": "tram_dt_bach_dang",
+                "name": "Trạm CSĐT Bạch Đằng",
+                "shortName": "Tr.BĐ",
+                "type": "duong_thuy",
+                "color": "#0097A7",
+                "hq": {
+                    "name": "Bạch Đằng",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 16
+            },
+            {
+                "id": "dt1",
+                "name": "Đội CSĐT số 1",
+                "shortName": "ĐT1",
+                "type": "duong_thuy",
+                "color": "#00838F",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 45
+            },
+            {
+                "id": "dt2",
+                "name": "Đội CSĐT số 2",
+                "shortName": "ĐT2",
+                "type": "duong_thuy",
+                "color": "#006064",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 18
+            },
+            {
+                "id": "dt3",
+                "name": "Đội CSĐT số 3",
+                "shortName": "ĐT3",
+                "type": "duong_thuy",
+                "color": "#004D40",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                },
+                "personnel": 35
+            },
+            {
+                "id": "dctp",
+                "name": "Đội phòng ngừa, đấu tranh chống tội phạm trên đường thuỷ",
+                "shortName": "ĐTP",
+                "type": "duong_thuy",
+                "color": "#5C6BC0",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            }
+        ]
+    },
+    "planned": {
+        "label": "Quy hoạch",
+        "units": [
+            {
+                "id": "qh_tham_muu",
+                "name": "Đội Tham mưu",
+                "shortName": "TM",
+                "type": "van_phong",
+                "color": "#A1887F",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_tuyen_truyen",
+                "name": "Đội Tuyên truyền, ĐT giải quyết TNGT và xử lý vi phạm",
+                "shortName": "TT",
+                "type": "van_phong",
+                "color": "#78909C",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_dang_ky",
+                "name": "Đội Đăng ký, quản lý phương tiện",
+                "shortName": "ĐK",
+                "type": "van_phong",
+                "color": "#9AA0A6",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_sat_hach",
+                "name": "Đội Sát hạch, cấp giấy phép lái xe",
+                "shortName": "SH",
+                "type": "van_phong",
+                "color": "#BDBDBD",
+                "hq": {
+                    "name": "Trụ sở Phòng CSGT",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_db1",
+                "name": "Đội CSGT đường bộ số 1",
+                "shortName": "ĐB1",
+                "type": "duong_bo",
+                "color": "#4285F4",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_db2",
+                "name": "Đội CSGT đường bộ số 2",
+                "shortName": "ĐB2",
+                "type": "duong_bo",
+                "color": "#34A853",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_db3",
+                "name": "Đội CSGT đường bộ số 3",
+                "shortName": "ĐB3",
+                "type": "duong_bo",
+                "color": "#FA7B17",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_db4",
+                "name": "Đội CSGT đường bộ số 4",
+                "shortName": "ĐB4",
+                "type": "duong_bo",
+                "color": "#EA4335",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_db5",
+                "name": "Đội CSGT đường bộ số 5",
+                "shortName": "ĐB5",
+                "type": "duong_bo",
+                "color": "#A142F4",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_dt1",
+                "name": "Đội Cảnh sát đường thuỷ số 1",
+                "shortName": "ĐT1",
+                "type": "duong_thuy",
+                "color": "#24C1E0",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_dt2",
+                "name": "Đội Cảnh sát đường thuỷ số 2",
+                "shortName": "ĐT2",
+                "type": "duong_thuy",
+                "color": "#12B5CB",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            },
+            {
+                "id": "qh_dtram",
+                "name": "Trạm Cảnh sát đường thuỷ Bạch Đằng",
+                "shortName": "Tr.BĐ",
+                "type": "duong_thuy",
+                "color": "#0097A7",
+                "hq": {
+                    "name": "Chưa cập nhật",
+                    "lat": null,
+                    "lng": null
+                }
+            }
+        ]
+    }
+}

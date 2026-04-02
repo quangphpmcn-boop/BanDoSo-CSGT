@@ -1,0 +1,94 @@
+{
+    "tram_dt_an_duong": {
+        "waterways": [
+            "Sông Lạch Tray",
+            "Sông Đào Hạ Lý"
+        ]
+    },
+    "tram_dt_may_chi": {
+        "waterways": [
+            "Sông Cấm",
+            "Sông Tam Bạc",
+            "Sông Đào Hạ Lý"
+        ]
+    },
+    "tram_dt_bach_dang": {
+        "waterways": [
+            "Sông Đá Bạc",
+            "Sông Bạch Đằng",
+            "Sông Giá",
+            "Sông Thải"
+        ]
+    },
+    "dt1": {
+        "waterways": [
+            "Kênh Cái Tráp",
+            "Kênh Hà Nam",
+            "Sông Chanh",
+            "Sông Cấm",
+            "Sông Ruột Lợn"
+        ]
+    },
+    "dt2": {
+        "waterways": [
+            "Sông Văn Úc",
+            "Sông Thái Bình",
+            "Sông Luộc",
+            "Sông Hóa",
+            "Sông Đa Độ"
+        ]
+    },
+    "dt3": {
+        "waterways": [
+            "Sông Kinh Môn",
+            "Sông Kinh Thầy",
+            "Sông Lai",
+            "Sông Thái Bình",
+            "Sông Gùa",
+            "Sông Văn Úc",
+            "Sông Sặt",
+            "Sông Tứ Kỳ (Cửu Yên)",
+            "Sông Đĩnh Đào",
+            "Sông Cầu Xe"
+        ]
+    },
+    "_quyhoach": {
+        "doi_dt_1_qh": {
+            "waterways": [
+                "Sông Cấm",
+                "Sông Ruột Lợn",
+                "Sông Đào Hạ Lý",
+                "Sông Lạch Tray",
+                "Kênh Cái Tráp",
+                "Kênh Hà Nam",
+                "Sông Kinh Môn",
+                "Sông Tam Bạc"
+            ]
+        },
+        "doi_dt_2_qh": {
+            "waterways": [
+                "Sông Văn Úc",
+                "Sông Thái Bình",
+                "Sông Kênh Khê",
+                "Sông Luộc",
+                "Sông Gùa",
+                "Sông Mía",
+                "Sông Lai",
+                "Sông Đa Độ",
+                "Sông Sặt",
+                "Sông Tứ Kỳ (Cửu Yên)",
+                "Sông Đĩnh Đào",
+                "Sông Cầu Xe"
+            ]
+        },
+        "tram_bach_dang_qh": {
+            "waterways": [
+                "Sông Đá Bạc",
+                "Sông Bạch Đằng",
+                "Sông Giá",
+                "Sông Kinh Thầy",
+                "Sông Thải"
+            ]
+        }
+    }
+}

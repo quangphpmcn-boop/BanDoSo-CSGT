@@ -1,0 +1,462 @@
+{
+  "Hồng Bàng": {
+    "area": 12.11,
+    "pop": 113200
+  },
+  "Hồng An": {
+    "area": 27.64,
+    "pop": 64771
+  },
+  "Ngô Quyền": {
+    "area": 5.81,
+    "pop": 88595
+  },
+  "Gia Viên": {
+    "area": 5.01,
+    "pop": 102246
+  },
+  "Lê Chân": {
+    "area": 5.65,
+    "pop": 161051
+  },
+  "An Biên": {
+    "area": 6.56,
+    "pop": 116091
+  },
+  "Hải An": {
+    "area": 39.99,
+    "pop": 102648
+  },
+  "Đông Hải": {
+    "area": 57.65,
+    "pop": 50748
+  },
+  "Kiến An": {
+    "area": 11.18,
+    "pop": 67236
+  },
+  "Phù Liễn": {
+    "area": 18.46,
+    "pop": 60733
+  },
+  "Hưng Đạo": {
+    "area": 18.64,
+    "pop": 37859
+  },
+  "Dương Kinh": {
+    "area": 27.96,
+    "pop": 27339
+  },
+  "Đồ Sơn": {
+    "area": 25.54,
+    "pop": 36494
+  },
+  "Nam Đồ Sơn": {
+    "area": 21.0,
+    "pop": 30372
+  },
+  "An Dương": {
+    "area": 31.23,
+    "pop": 76879
+  },
+  "An Hải": {
+    "area": 19.96,
+    "pop": 77086
+  },
+  "An Phong": {
+    "area": 27.92,
+    "pop": 44660
+  },
+  "Thủy Nguyên": {
+    "area": 45.34,
+    "pop": 71731
+  },
+  "Thiên Hương": {
+    "area": 21.1,
+    "pop": 45140
+  },
+  "Hòa Bình": {
+    "area": 19.47,
+    "pop": 47168
+  },
+  "Nam Triệu": {
+    "area": 29.51,
+    "pop": 40224
+  },
+  "Bạch Đằng": {
+    "area": 53.49,
+    "pop": 51633
+  },
+  "Lưu Kiếm": {
+    "area": 42.17,
+    "pop": 49376
+  },
+  "Lê Ích Mộc": {
+    "area": 27.04,
+    "pop": 51853
+  },
+  "Việt Khê": {
+    "area": 30.98,
+    "pop": 37936
+  },
+  "Kiến Thụy": {
+    "area": 20.18,
+    "pop": 37020
+  },
+  "Kiến Minh": {
+    "area": 16.32,
+    "pop": 26181
+  },
+  "Kiến Hải": {
+    "area": 31.86,
+    "pop": 44862
+  },
+  "Kiến Hưng": {
+    "area": 21.02,
+    "pop": 28044
+  },
+  "Nghi Dương": {
+    "area": 19.48,
+    "pop": 25660
+  },
+  "An Hưng": {
+    "area": 20.23,
+    "pop": 25535
+  },
+  "An Khánh": {
+    "area": 24.16,
+    "pop": 33936
+  },
+  "An Quang": {
+    "area": 21.4,
+    "pop": 29091
+  },
+  "An Trường": {
+    "area": 25.54,
+    "pop": 30256
+  },
+  "An Lão": {
+    "area": 26.39,
+    "pop": 47189
+  },
+  "Vĩnh Bảo": {
+    "area": 30.6,
+    "pop": 45332
+  },
+  "Nguyễn Bỉnh Khiêm": {
+    "area": 26.37,
+    "pop": 24575
+  },
+  "Vĩnh Am": {
+    "area": 27.34,
+    "pop": 34562
+  },
+  "Vĩnh Hải": {
+    "area": 32.21,
+    "pop": 37574
+  },
+  "Vĩnh Hòa": {
+    "area": 21.66,
+    "pop": 28176
+  },
+  "Vĩnh Thịnh": {
+    "area": 21.5,
+    "pop": 26382
+  },
+  "Vĩnh Thuận": {
+    "area": 23.5,
+    "pop": 28879
+  },
+  "Quyết Thắng": {
+    "area": 22.15,
+    "pop": 22560
+  },
+  "Tiên Lãng": {
+    "area": 27.89,
+    "pop": 40446
+  },
+  "Tân Minh": {
+    "area": 33.0,
+    "pop": 36598
+  },
+  "Tiên Minh": {
+    "area": 36.48,
+    "pop": 36236
+  },
+  "Chấn Hưng": {
+    "area": 32.11,
+    "pop": 26092
+  },
+  "Hùng Thắng": {
+    "area": 43.59,
+    "pop": 26877
+  },
+  "Hải Dương": {
+    "area": 6.51,
+    "pop": 51522
+  },
+  "Lê Thanh Nghị": {
+    "area": 8.04,
+    "pop": 81500
+  },
+  "Việt Hòa": {
+    "area": 17.02,
+    "pop": 31001
+  },
+  "Thành Đông": {
+    "area": 12.22,
+    "pop": 50307
+  },
+  "Nam Đồng": {
+    "area": 19.67,
+    "pop": 24900
+  },
+  "Tân Hưng": {
+    "area": 14.18,
+    "pop": 38794
+  },
+  "Thạch Khôi": {
+    "area": 19.94,
+    "pop": 34432
+  },
+  "Tứ Minh": {
+    "area": 14.77,
+    "pop": 30416
+  },
+  "Ái Quốc": {
+    "area": 17.6,
+    "pop": 24736
+  },
+  "Chu Văn An": {
+    "area": 40.86,
+    "pop": 56251
+  },
+  "Chí Linh": {
+    "area": 26.79,
+    "pop": 31983
+  },
+  "Trần Hưng Đạo": {
+    "area": 66.89,
+    "pop": 35932
+  },
+  "Nguyễn Trãi": {
+    "area": 76.28,
+    "pop": 16098
+  },
+  "Trần Nhân Tông": {
+    "area": 39.97,
+    "pop": 27053
+  },
+  "Lê Đại Hành": {
+    "area": 31.62,
+    "pop": 24638
+  },
+  "Kinh Môn": {
+    "area": 11.47,
+    "pop": 24948
+  },
+  "Nguyễn Đại Năng": {
+    "area": 17.4,
+    "pop": 29083
+  },
+  "Trần Liễu": {
+    "area": 23.87,
+    "pop": 26696
+  },
+  "Bắc An Phụ": {
+    "area": 26.1,
+    "pop": 22780
+  },
+  "Phạm Sư Mệnh": {
+    "area": 22.34,
+    "pop": 24919
+  },
+  "Nhị Chiểu": {
+    "area": 39.28,
+    "pop": 43799
+  },
+  "Nam An Phụ": {
+    "area": 25.9,
+    "pop": 27841
+  },
+  "Nam Sách": {
+    "area": 19.75,
+    "pop": 36758
+  },
+  "Thái Tân": {
+    "area": 20.73,
+    "pop": 20334
+  },
+  "Hợp Tiến": {
+    "area": 17.5,
+    "pop": 20740
+  },
+  "Trần Phú": {
+    "area": 24.99,
+    "pop": 35937
+  },
+  "An Phú": {
+    "area": 27.25,
+    "pop": 35121
+  },
+  "Mao Điền": {
+    "area": 24.37,
+    "pop": 43333
+  },
+  "Cẩm Giàng": {
+    "area": 23.43,
+    "pop": 34025
+  },
+  "Cẩm Giang": {
+    "area": 26.64,
+    "pop": 64523
+  },
+  "Tuệ Tĩnh": {
+    "area": 17.78,
+    "pop": 27202
+  },
+  "Phú Thái": {
+    "area": 28.89,
+    "pop": 46234
+  },
+  "Lai Khê": {
+    "area": 30.07,
+    "pop": 42875
+  },
+  "An Thành": {
+    "area": 23.66,
+    "pop": 28785
+  },
+  "Kim Thành": {
+    "area": 33.79,
+    "pop": 42915
+  },
+  "Kẻ Sặt": {
+    "area": 24.67,
+    "pop": 39554
+  },
+  "Bình Giang": {
+    "area": 26.01,
+    "pop": 32925
+  },
+  "Đường An": {
+    "area": 25.53,
+    "pop": 34341
+  },
+  "Thượng Hồng": {
+    "area": 24.01,
+    "pop": 24584
+  },
+  "Thanh Hà": {
+    "area": 25.9,
+    "pop": 36173
+  },
+  "Hà Tây": {
+    "area": 24.41,
+    "pop": 34187
+  },
+  "Hà Bắc": {
+    "area": 26.29,
+    "pop": 36429
+  },
+  "Hà Nam": {
+    "area": 27.78,
+    "pop": 27800
+  },
+  "Hà Đông": {
+    "area": 33.15,
+    "pop": 33499
+  },
+  "Thanh Miện": {
+    "area": 33.47,
+    "pop": 45388
+  },
+  "Bắc Thanh Miện": {
+    "area": 25.27,
+    "pop": 27227
+  },
+  "Hải Hưng": {
+    "area": 24.84,
+    "pop": 27314
+  },
+  "Nguyễn Lương Bằng": {
+    "area": 21.78,
+    "pop": 33838
+  },
+  "Nam Thanh Miện": {
+    "area": 23.99,
+    "pop": 33230
+  },
+  "Ninh Giang": {
+    "area": 27.41,
+    "pop": 39535
+  },
+  "Vĩnh Lại": {
+    "area": 26.15,
+    "pop": 38963
+  },
+  "Khúc Thừa Dụ": {
+    "area": 28.79,
+    "pop": 33784
+  },
+  "Tân An": {
+    "area": 24.9,
+    "pop": 27563
+  },
+  "Hồng Châu": {
+    "area": 29.59,
+    "pop": 32742
+  },
+  "Tứ Kỳ": {
+    "area": 30.86,
+    "pop": 37792
+  },
+  "Tân Kỳ": {
+    "area": 27.76,
+    "pop": 38172
+  },
+  "Đại Sơn": {
+    "area": 22.99,
+    "pop": 30161
+  },
+  "Chí Minh": {
+    "area": 33.58,
+    "pop": 32636
+  },
+  "Lạc Phượng": {
+    "area": 24.71,
+    "pop": 28613
+  },
+  "Nguyễn Giáp": {
+    "area": 27.21,
+    "pop": 28127
+  },
+  "Gia Lộc": {
+    "area": 21.78,
+    "pop": 46735
+  },
+  "Yết Kiêu": {
+    "area": 21.53,
+    "pop": 33499
+  },
+  "Gia Phúc": {
+    "area": 31.79,
+    "pop": 40682
+  },
+  "Trường Tân": {
+    "area": 24.56,
+    "pop": 31736
+  },
+  "Cát Hải": {
+    "area": 286.98,
+    "pop": 71211
+  },
+  "Bạch Long Vỹ": {
+    "area": 3.07,
+    "pop": 686
+  },
+  "Bạch Long Vĩ": {
+    "area": 3.07,
+    "pop": 686
+  }
+}

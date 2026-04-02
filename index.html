@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản đồ số — Phòng CSGT Công an TP Hải Phòng</title>
+    <meta name="description"
+        content="Bản đồ số thể hiện địa bàn, tuyến đường, trụ sở các đơn vị Đội Trạm thuộc Phòng CSGT Công an TP Hải Phòng">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- Google Fonts: Public Sans + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Public+Sans:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="app-header" id="app-header">
+        <div class="header-content">
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="header-brand">
+                <img src="docs/Phu_hieu_canh_sat_giao_thong.PNG" alt="Phù hiệu CSGT" class="header-logo"
+                    id="header-logo">
+                <div class="header-title-group">
+                    <span class="header-label">CÔNG AN THÀNH PHỐ HẢI PHÒNG</span>
+                    <h1 class="header-title">BẢN ĐỒ SỐ PHÒNG CẢNH SÁT GIAO THÔNG</h1>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="header-edit-btn" id="header-edit-btn" title="Chỉnh sửa đơn vị" style="display:none;">
+                    ✏️ Chỉnh sửa
+                </button>
+            </div>
+        </div>
+        <div class="header-gold-bar"></div>
+    </header>
+
+    <!-- Floating Edit Toolbar -->
+    <div class="edit-toolbar hidden" id="edit-toolbar">
+        <div class="edit-toolbar-header">
+            <span class="edit-toolbar-title">✏️ CHỈNH SỬA</span>
+            <button class="edit-toolbar-close" id="edit-toolbar-close" aria-label="Đóng">✕</button>
+        </div>
+        <div class="edit-toolbar-section">
+            <div class="edit-toolbar-label">TUYẾN ĐƯỜNG</div>
+            <div class="edit-toolbar-actions">
+                <button class="edit-action-btn" id="btn-route-add" data-action="add" title="Thêm tuyến quản lý">
+                    <span class="edit-action-icon">➕</span>
+                    <span>Thêm tuyến</span>
+                </button>
+                <button class="edit-action-btn" id="btn-route-remove" data-action="remove" title="Bớt tuyến quản lý">
+                    <span class="edit-action-icon">➖</span>
+                    <span>Bớt tuyến</span>
+                </button>
+            </div>
+        </div>
+        <div class="edit-toolbar-divider"></div>
+        <div class="edit-toolbar-section">
+            <button class="edit-action-btn wide" id="btn-edit-info" title="Sửa thông tin đơn vị">
+                📝 Sửa thông tin
+            </button>
+            <button class="edit-action-btn wide" id="btn-edit-location" title="Sửa vị trí trụ sở">
+                📍 Sửa vị trí đơn vị
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <main class="app-main">
+        <!-- Sidebar Overlay (mobile) -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Toggle -->
+            <div class="sidebar-section">
+                <div class="toggle-container" id="mode-toggle">
+                    <button class="toggle-btn active" data-mode="current" id="btn-current">
+                        HIỆN TẠI
+                    </button>
+                    <button class="toggle-btn" data-mode="planned" id="btn-planned">
+                        QUY HOẠCH
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar" id="stats-bar">
+                <!-- Populated by JS -->
+            </div>
+
+            <!-- Unit List -->
+            <div class="sidebar-section">
+                <div class="section-label">DANH SÁCH ĐƠN VỊ</div>
+                <div class="unit-list" id="unit-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+
+        </aside>
+
+        <!-- Map Container -->
+        <div class="map-container" id="map-container">
+            <div id="map"></div>
+
+            <!-- Floating Info Panel -->
+            <div class="info-panel hidden" id="info-panel">
+                <div class="info-panel-header">
+                    <h2 class="info-panel-title" id="info-panel-title"></h2>
+                    <button class="info-panel-close" id="info-panel-close" aria-label="Đóng">✕</button>
+                </div>
+                <div class="info-panel-body" id="info-panel-body">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Turf.js for GIS operations -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- App JS -->
+    <script src="js/app.js"></script>
+</body>
+
+</html>

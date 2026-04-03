@@ -24,6 +24,9 @@
 </head>
 
 <body>
+    <!-- Skip Navigation -->
+    <a class="skip-link" href="#map">Chuyển đến bản đồ</a>
+
     <!-- Header -->
     <header class="app-header" id="app-header">
         <div class="header-content">
@@ -106,7 +109,7 @@
             <!-- Unit List -->
             <div class="sidebar-section">
                 <div class="section-label">DANH SÁCH ĐƠN VỊ</div>
-                <div class="unit-list" id="unit-list">
+                <div class="unit-list" id="unit-list" aria-live="polite">
                     <!-- Populated by JS -->
                 </div>
             </div>
@@ -116,7 +119,7 @@
 
         <!-- Map Container -->
         <div class="map-container" id="map-container">
-            <div id="map"></div>
+            <div id="map" role="application" aria-label="Bản đồ số CSGT Hải Phòng"></div>
 
             <!-- Floating Info Panel -->
             <div class="info-panel hidden" id="info-panel">
@@ -124,7 +127,7 @@
                     <h2 class="info-panel-title" id="info-panel-title"></h2>
                     <button class="info-panel-close" id="info-panel-close" aria-label="Đóng">✕</button>
                 </div>
-                <div class="info-panel-body" id="info-panel-body">
+                <div class="info-panel-body" id="info-panel-body" aria-live="polite">
                     <!-- Populated by JS -->
                 </div>
             </div>

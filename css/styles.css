@@ -77,6 +77,41 @@ body {
   height: 100vh;
 }
 
+/* ── Skip Navigation Link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* ── Focus Visible ── */
+.toggle-btn:focus-visible,
+.unit-item:focus-visible,
+.info-panel-close:focus-visible,
+.hamburger-btn:focus-visible,
+.edit-action-btn:focus-visible,
+.header-edit-btn:focus-visible,
+.btn-add-road:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary-container);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 /* ── Header ── */
 .app-header {
   position: fixed;
@@ -583,6 +618,28 @@ body {
   pointer-events: none;
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.7);
   opacity: 0.75;
+}
+
+/* ── Ward Hover Tooltip ── */
+.ward-hover-tooltip {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 6px 12px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--on-surface) !important;
+  border: 1px solid var(--outline-variant) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-float) !important;
+}
+
+.ward-hover-tooltip::before {
+  border-top-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Ward polygons → clickable cursor */
+.leaflet-interactive {
+  cursor: pointer;
 }
 
 /* ── Scrollbar ── */

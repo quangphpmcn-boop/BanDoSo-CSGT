@@ -456,33 +456,22 @@ function onEachWard(feature, layer) {
   const district = getWardDistrict(feature);
   const unitInfo = findUnitForWard(wardName);
 
-  const unitDisplay = unitInfo
-    ? `<span style="color: ${unitInfo.unitColor}; font-weight: 600;">● </span>${unitInfo.unitName}`
-    : '—';
-
-  const popupContent = `
-    <div class="ward-popup">
-      <div class="ward-popup-title">${wardName}</div>
-      ${district ? `
-        <div class="ward-popup-row">
-          <span class="ward-popup-label">Quận/Huyện</span>
-          <span class="ward-popup-value">${district}</span>
-        </div>
-      ` : ''}
-      <div class="ward-popup-row">
-        <span class="ward-popup-label">Đơn vị quản lý</span>
-        <span class="ward-popup-value">${unitDisplay}</span>
-      </div>
-    </div>
-  `;
-
-  layer.bindPopup(popupContent, {
-    maxWidth: 280,
-    className: 'ward-popup-container'
+  // Tooltip: show ward name on hover
+  layer.bindTooltip(wardName + (district ? ` — ${district}` : ''), {
+    sticky: true,
+    className: 'ward-hover-tooltip',
+    direction: 'top',
+    offset: [0, -10]
   });
 
-  // Hover effect
+  // Click: select the managing unit → highlight entire cluster
   layer.on({
+    click: (e) => {
+      L.DomEvent.stopPropagation(e);
+      if (unitInfo) {
+        selectUnit(unitInfo.unitId);
+      }
+    },
     mouseover: (e) => {
       const l = e.target;
       if (selectedUnitId) {
@@ -1220,9 +1209,9 @@ function showWaterwayLegend() {
     `;
   } else {
     legend.innerHTML = `
-      <div class="road-legend-title">Phân cấp đường thuỷ</div>
-      <div class="road-legend-item"><span class="road-legend-line" style="background:#1565C0"></span> Sông</div>
-      <div class="road-legend-item"><span class="road-legend-line" style="background:#0288D1; border-style:dashed"></span> Kênh</div>
+      <div class="road-legend-title">GHI CHÚ</div>
+      <div class="road-legend-item"><span class="road-legend-line" style="background:#1565C0;height:4px"></span> Sông</div>
+      <div class="road-legend-item"><span style="font-size:16px;width:20px;text-align:center">📍</span> Trụ sở</div>
     `;
   }
   legend.style.display = 'block';
@@ -1348,11 +1337,18 @@ function getUnitBounds(unitId) {
   const bounds = L.latLngBounds();
   let found = false;
 
+  // Bạch Long Vĩ island is at lat ~20.13 — exclude from bounds to prevent
+  // extreme zoom-out for units like ĐB4 (current) and ĐB3 (planned)
+  const MIN_MAINLAND_LAT = 20.4;
+
   wardLayer.eachLayer(layer => {
     const wardName = getWardName(layer.feature);
     const normalized = normalizeWardName(wardName);
     const unitWards = mapping.wards.map(w => normalizeWardName(w));
     if (unitWards.includes(normalized)) {
+      const center = layer.getBounds().getCenter();
+      // Skip offshore islands (Bạch Long Vĩ)
+      if (center.lat < MIN_MAINLAND_LAT) return;
       bounds.extend(layer.getBounds());
       found = true;
     }
@@ -1372,13 +1368,14 @@ function showRoadLegend() {
   // Only show quoc_lo and duong_tinh in legend (not noi_thi by default)
   const visibleStyles = Object.entries(ROAD_STYLES).filter(([k]) => k !== 'noi_thi');
   legend.innerHTML = `
-    <div class="road-legend-title">PHÂN CẤP ĐƯỜNG</div>
+    <div class="road-legend-title">GHI CHÚ</div>
     ${visibleStyles.map(([key, s]) => `
       <div class="road-legend-item">
         <span class="road-legend-line" style="background:${s.color}; height:${Math.max(2, s.weight - 1)}px"></span>
         <span>${s.label}</span>
       </div>
     `).join('')}
+    <div class="road-legend-item"><span style="font-size:16px;width:20px;text-align:center">📍</span> Trụ sở</div>
   `;
   document.getElementById('map-container').appendChild(legend);
 }
@@ -1699,12 +1696,27 @@ function zoomToUnit(unitId) {
   const bounds = getUnitBounds(unitId);
   if (bounds) {
     fitBoundsConstrained(bounds);
+
+    // Đặc biệt cho Đội 5 theo yêu cầu: tăng mức zoom sau khi fit lên 11
+    if (unitId === 'db5') {
+      setTimeout(() => {
+        map.setView(bounds.getCenter(), 11, { animate: true });
+      }, 500);
+    }
   }
 }
 
-/** fitBounds with min zoom = 10, max zoom = 13 */
+/** fitBounds with min zoom = 10, max zoom = 13
+ *  Offset center to account for sidebar (left) and info panel (right) */
 function fitBoundsConstrained(bounds) {
-  map.fitBounds(bounds, { padding: [40, 40], maxZoom: 13, animate: true });
+  // Sidebar ~240px on left, info panel ~400px on right
+  // paddingTopLeft = [left, top], paddingBottomRight = [right, bottom]
+  map.fitBounds(bounds, {
+    paddingTopLeft: [40, 40],
+    paddingBottomRight: [420, 40],
+    maxZoom: 13,
+    animate: true
+  });
   // Prevent zooming out too far for units with large/spread-out territory
   setTimeout(() => {
     if (map.getZoom() < 10) {
@@ -2244,10 +2256,10 @@ function _showHqMarkerReadOnly(unit) {
       icon: hqIcon,
       zIndexOffset: 1000
     }).addTo(map);
-    const label = hqs.length > 1 ? `Trụ sở ${idx + 1}` : unit.name;
+    const label = `Trụ sở ${idx + 1}`;
     const addr = hq.name || '';
     marker.bindTooltip(`${label}${addr ? '<br>' + addr : ''}`, {
-      permanent: false, sticky: false, offset: [15, -20], className: 'hq-tooltip'
+      permanent: true, sticky: false, offset: [15, -20], className: 'hq-tooltip', direction: 'right'
     });
     window._hqMarkers.push(marker);
   });
@@ -2285,8 +2297,8 @@ function _showHqMarker(unit) {
       icon: hqIcon,
       zIndexOffset: 1000
     }).addTo(map);
-    const label = hqs.length > 1 ? `Trụ sở ${idx + 1}` : 'Trụ sở';
-    marker.bindTooltip(`${label} — kéo để di chuyển`, { permanent: false, sticky: true, offset: [15, -20] });
+    const label = `Trụ sở ${idx + 1}`;
+    marker.bindTooltip(`${label} — kéo để di chuyển`, { permanent: true, sticky: false, offset: [15, -20], direction: 'right' });
     marker.on('dragend', (e) => {
       const pos = e.target.getLatLng();
       const currentHqs = getUnitHqs(unit.id);

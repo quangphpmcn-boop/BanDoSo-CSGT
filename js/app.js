@@ -553,17 +553,28 @@ function renderStats() {
 
   // Count total wards and km from mapping
   let totalWards = 0;
-  let totalRouteKm = 0;
+  let totalRoadKm = 0;
+  let totalWaterwayKm = 0;
 
   if (wardUnitMapping) {
     for (const unit of units) {
       const mapping = wardUnitMapping[unit.id];
       if (mapping) {
         totalWards += (mapping.wards || []).length;
-        if (mapping.totalKm) totalRouteKm += mapping.totalKm;
+        if (mapping.totalKm) {
+          if (unit.type === 'duong_bo') {
+            totalRoadKm += mapping.totalKm;
+          } else if (unit.type === 'duong_thuy') {
+            totalWaterwayKm += mapping.totalKm;
+          }
+        }
       }
     }
   }
+
+  // Formatting strings
+  const roadStr = totalRoadKm > 0 ? ` · ${totalRoadKm.toFixed(1)} km đường bộ` : '';
+  const waterwayStr = totalWaterwayKm > 0 ? ` · ${totalWaterwayKm.toFixed(1)} km đường thuỷ` : '';
 
   statsEl.innerHTML = `
     <div class="stats-grid">
@@ -584,7 +595,7 @@ function renderStats() {
         <div class="stat-label">văn phòng</div>
       </div>
     </div>
-    ${totalWards > 0 ? `<div class="stat-summary">${totalWards} xã/phường${totalRouteKm > 0 ? ` · ${totalRouteKm} km đường thuỷ` : ''}</div>` : ''}
+    ${totalWards > 0 ? `<div class="stat-summary">${totalWards} xã/phường${roadStr}${waterwayStr}</div>` : ''}
   `;
 }
 

@@ -1681,11 +1681,8 @@ function zoomToUnit(unitId) {
 
   // Văn phòng: zoom to HQ if available, else center
   if (unit.type === 'van_phong') {
-    if (unit.hq && unit.hq.lat && unit.hq.lng) {
-      map.setView([unit.hq.lat, unit.hq.lng], 14, { animate: true });
-    } else {
-      map.setView(HP_CENTER, 13, { animate: true });
-    }
+    // Zoom out to see the entire city (all HQs will be visible)
+    map.setView(HP_CENTER, HP_ZOOM, { animate: true });
     return;
   }
 

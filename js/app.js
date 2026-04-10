@@ -2312,8 +2312,7 @@ function _showHqMarkerReadOnly(unit) {
       zIndexOffset: 1000
     }).addTo(map);
     const label = `Trụ sở ${idx + 1}`;
-    const addr = hq.name || '';
-    marker.bindTooltip(`${label}${addr ? '<br>' + addr : ''}`, {
+    marker.bindTooltip(label, {
       permanent: true, sticky: false, offset: [15, -20], className: 'hq-tooltip', direction: 'right'
     });
     window._hqMarkers.push(marker);

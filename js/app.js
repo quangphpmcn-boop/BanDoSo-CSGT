@@ -73,14 +73,14 @@ const DEFAULT_HQ_LOCATIONS = [
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 2 đường Ngô Quyền, xã An Lão, HP', lat: 20.821194, lng: 106.556250 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 78 đường 25/10, P. Thủy Nguyên, HP', lat: 20.918000, lng: 106.673222 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Km9+400 QL10, P. Lưu Kiếm, HP', lat: 20.983444, lng: 106.672361 },
-  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '702 Trần Nhân Tông, Kiến An, Hải Phòng', lat: 20.846500, lng: 106.761806 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '702 Trần Nhân Tông, Kiến An, Hải Phòng', lat: 20.808806, lng: 106.640278 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 6, Đường 351, An Dương, Hải Phòng', lat: 20.864944, lng: 106.613917 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Km83+220 Quốc lộ 5, P. Hồng An, TP Hải Phòng', lat: 20.905472, lng: 106.575250 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '541 Hùng Vương, Hồng Bàng, HP', lat: 20.889694, lng: 106.604083 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '28 Ký Con, Hồng Bàng, HP', lat: 20.855639, lng: 106.674306 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '281 Lạch Tray, Gia Viên, HP', lat: 20.831333, lng: 106.698778 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 160, Đường 354, khu 3, xã Tiên Lãng', lat: 20.728639, lng: 106.558333 },
-  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Khu Tắc Giang, Kiến Minh, HP', lat: null, lng: null },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Khu Tắc Giang, Kiến Minh, HP', lat: 20.755194, lng: 106.675944 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '202 đường Đa Phúc, TDP Quảng Luận, Hưng Đạo, HP', lat: 20.798389, lng: 106.658528 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '263 Nguyễn Hữu Cầu, Đồ Sơn, HP', lat: 20.723417, lng: 106.776472 },
   { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Ngõ 258 Đà Nẵng, Ngô Quyền, Hải Phòng', lat: 20.857278, lng: 106.706444 },
@@ -458,19 +458,19 @@ function wardStyle(feature) {
   const wardName = getWardName(feature);
   const unitInfo = findUnitForWard(wardName);
 
-  // If a unit is selected, highlight its wards
+  // If a unit is selected, highlight its wards with vivid color
   if (selectedUnitId && unitInfo && unitInfo.unitId === selectedUnitId) {
-    // Check if the selected unit is đường bộ → subtle borders to avoid confusion with roads
+    // Check if the selected unit is đường bộ → slightly subtler to avoid confusion with roads
     const selectedUnit = getActiveUnits().find(u => u.id === selectedUnitId);
     const isDuongBo = selectedUnit && selectedUnit.type === 'duong_bo';
 
     return {
       fillColor: unitInfo.unitColor,
-      fillOpacity: isDuongBo ? 0.15 : 0.3,
+      fillOpacity: isDuongBo ? 0.25 : 0.4,
       color: unitInfo.unitColor,
-      weight: isDuongBo ? 0.8 : 2.5,
-      opacity: isDuongBo ? 0.3 : 0.8,
-      dashArray: isDuongBo ? '4 4' : null
+      weight: isDuongBo ? 1.5 : 2.5,
+      opacity: isDuongBo ? 0.6 : 0.9,
+      dashArray: null
     };
   }
 
@@ -478,20 +478,31 @@ function wardStyle(feature) {
   if (selectedUnitId) {
     return {
       fillColor: '#9AA0A6',
-      fillOpacity: 0.02,
+      fillOpacity: 0.03,
       color: '#817662',
       weight: 0.5,
-      opacity: 0.2
+      opacity: 0.15
     };
   }
 
-  // Default: subtle gold tint
+  // Default: no unit selected — show each ward tinted by its assigned unit color
+  if (unitInfo) {
+    return {
+      fillColor: unitInfo.unitColor,
+      fillOpacity: 0.12,
+      color: unitInfo.unitColor,
+      weight: 1,
+      opacity: 0.35
+    };
+  }
+
+  // Unassigned wards: subtle neutral tint
   return {
     fillColor: '#D4A017',
-    fillOpacity: 0.05,
+    fillOpacity: 0.04,
     color: '#817662',
-    weight: 1,
-    opacity: 0.4
+    weight: 0.8,
+    opacity: 0.3
   };
 }
 

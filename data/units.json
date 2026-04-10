@@ -157,8 +157,8 @@
                     },
                     {
                         "name": "Tổ Kiến Thụy: Khu Tắc Giang, Kiến Minh, Hải Phòng",
-                        "lat": null,
-                        "lng": null
+                        "lat": 20.755194,
+                        "lng": 106.675944
                     }
                 ]
             },
@@ -267,8 +267,8 @@
                     },
                     {
                         "name": "Tổ Kiến An: 702 Trần Nhân Tông, Kiến An, Hải Phòng",
-                        "lat": 20.846500,
-                        "lng": 106.761806
+                        "lat": 20.808806,
+                        "lng": 106.640278
                     }
                 ]
             },
@@ -333,26 +333,6 @@
                 ]
             },
             {
-                "id": "tram_ninh_giang",
-                "name": "Trạm CSGT Ninh Giang",
-                "shortName": "Tr.NG",
-                "type": "duong_bo",
-                "color": "#607D8B",
-                "hq": {
-                    "name": "Ninh Tĩnh, Ninh Giang, Hải Phòng",
-                    "lat": 20.733361,
-                    "lng": 106.397278
-                },
-                "personnel": 0,
-                "hqs": [
-                    {
-                        "name": "Ninh Tĩnh, Ninh Giang, Hải Phòng",
-                        "lat": 20.733361,
-                        "lng": 106.397278
-                    }
-                ]
-            },
-            {
                 "id": "tram_hong_an",
                 "name": "Trạm CSGT Hồng An",
                 "shortName": "Tr.HA",
@@ -373,31 +353,11 @@
                 ]
             },
             {
-                "id": "doi_ky_con",
-                "name": "Đội CSGT Ký Con",
-                "shortName": "KC",
-                "type": "duong_bo",
-                "color": "#546E7A",
-                "hq": {
-                    "name": "28 Ký Con, Hồng Bàng, Hải Phòng",
-                    "lat": 20.855639,
-                    "lng": 106.674306
-                },
-                "personnel": 0,
-                "hqs": [
-                    {
-                        "name": "28 Ký Con, Hồng Bàng, Hải Phòng",
-                        "lat": 20.855639,
-                        "lng": 106.674306
-                    }
-                ]
-            },
-            {
                 "id": "tram_dt_an_duong",
                 "name": "Trạm CSĐT An Dương",
                 "shortName": "Tr.AD",
                 "type": "duong_thuy",
-                "color": "#24C1E0",
+                "color": "#1E88E5",
                 "hq": {
                     "name": "An Dương",
                     "lat": null,
@@ -410,7 +370,7 @@
                 "name": "Trạm CSĐT Máy Chỉ",
                 "shortName": "Tr.MC",
                 "type": "duong_thuy",
-                "color": "#12B5CB",
+                "color": "#7E57C2",
                 "hq": {
                     "name": "Số 1 Chương Dương, Hồng Bàng, Hải Phòng",
                     "lat": 20.864667,
@@ -430,7 +390,7 @@
                 "name": "Trạm CSĐT Bạch Đằng",
                 "shortName": "Tr.BĐ",
                 "type": "duong_thuy",
-                "color": "#0097A7",
+                "color": "#0277BD",
                 "hq": {
                     "name": "TDP 4, Nam Triệu, Hải Phòng",
                     "lat": 20.937500,
@@ -450,7 +410,7 @@
                 "name": "Đội CSĐT số 1",
                 "shortName": "ĐT1",
                 "type": "duong_thuy",
-                "color": "#00838F",
+                "color": "#00897B",
                 "hq": {
                     "name": "Bờ trái sông Cấm, gần bến phà Máy Chai, P. Ngô Quyền, Hải Phòng",
                     "lat": 20.875472,
@@ -470,7 +430,7 @@
                 "name": "Đội CSĐT số 2",
                 "shortName": "ĐT2",
                 "type": "duong_thuy",
-                "color": "#006064",
+                "color": "#0D47A1",
                 "hq": {
                     "name": "Tân Thắng, An Hưng, Hải Phòng",
                     "lat": 20.763500,
@@ -490,7 +450,7 @@
                 "name": "Đội CSĐT số 3",
                 "shortName": "ĐT3",
                 "type": "duong_thuy",
-                "color": "#004D40",
+                "color": "#304FFE",
                 "hq": {
                     "name": "Tổ trung tâm: 106A Nguyễn Lương Bằng, P. Thành Đông, Hải Phòng",
                     "lat": 20.938167,

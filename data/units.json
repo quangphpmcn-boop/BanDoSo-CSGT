@@ -9,14 +9,14 @@
                 "type": "van_phong",
                 "color": "#A1887F",
                 "hq": {
-                    "name": "14 Phan Chu Trinh, Hồng Bàng, Hải Phòng",
+                    "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
                     "lat": 20.858639,
                     "lng": 106.682833
                 },
                 "personnel": 32,
                 "hqs": [
                     {
-                        "name": "14 Phan Chu Trinh, Hồng Bàng, Hải Phòng",
+                        "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
                         "lat": 20.858639,
                         "lng": 106.682833
                     }
@@ -29,19 +29,19 @@
                 "type": "van_phong",
                 "color": "#78909C",
                 "hq": {
-                    "name": "14 Phan Chu Trinh, Hồng Bàng, Hải Phòng",
+                    "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
                     "lat": 20.858639,
                     "lng": 106.682833
                 },
-                "personnel": 24,
+                "personnel": 23,
                 "hqs": [
                     {
-                        "name": "14 Phan Chu Trinh, Hồng Bàng, Hải Phòng",
+                        "name": "Trụ sở 1: Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
                         "lat": 20.858639,
                         "lng": 106.682833
                     },
                     {
-                        "name": "Cơ sở 2: 106A Nguyễn Lương Bằng, P. Thành Đông, Hải Phòng",
+                        "name": "Trụ sở 2: Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
                         "lat": 20.938167,
                         "lng": 106.316861
                     }
@@ -54,19 +54,19 @@
                 "type": "van_phong",
                 "color": "#9AA0A6",
                 "hq": {
-                    "name": "14 Phan Chu Trinh, Hồng Bàng, Hải Phòng",
+                    "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
                     "lat": 20.858639,
                     "lng": 106.682833
                 },
                 "personnel": 24,
                 "hqs": [
                     {
-                        "name": "14 Phan Chu Trinh, Hồng Bàng, Hải Phòng",
+                        "name": "Trụ sở 1: Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
                         "lat": 20.858639,
                         "lng": 106.682833
                     },
                     {
-                        "name": "Cơ sở 2: 106A Nguyễn Lương Bằng, P. Thành Đông, Hải Phòng",
+                        "name": "Trụ sở 2: Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
                         "lat": 20.938167,
                         "lng": 106.316861
                     }
@@ -79,19 +79,19 @@
                 "type": "van_phong",
                 "color": "#BDBDBD",
                 "hq": {
-                    "name": "119 Hùng Vương, Hồng Bàng, Hải Phòng",
+                    "name": "Số 119 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
                     "lat": 20.868806,
                     "lng": 106.655861
                 },
                 "personnel": 36,
                 "hqs": [
                     {
-                        "name": "119 Hùng Vương, Hồng Bàng, Hải Phòng",
+                        "name": "Trụ sở 1: Số 119 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
                         "lat": 20.868806,
                         "lng": 106.655861
                     },
                     {
-                        "name": "Cơ sở phía Tây: Km 57+600 QL5, P. Ái Quốc, Hải Phòng",
+                        "name": "Trụ sở 2: Km 57+600 Quốc lộ 5, phường Ái Quốc, TP Hải Phòng",
                         "lat": 20.959194,
                         "lng": 106.368056
                     }
@@ -104,24 +104,24 @@
                 "type": "duong_bo",
                 "color": "#4285F4",
                 "hq": {
-                    "name": "41 Tam Bạc, Hồng Bàng, Hải Phòng",
+                    "name": "Số 41 Tam Bạc, phường Hồng Bàng, TP Hải Phòng",
                     "lat": 20.857306,
                     "lng": 106.674167
                 },
                 "personnel": 66,
                 "hqs": [
                     {
-                        "name": "41 Tam Bạc, Hồng Bàng, Hải Phòng",
+                        "name": "Trụ sở chính: Số 41 Tam Bạc, phường Hồng Bàng, TP Hải Phòng",
                         "lat": 20.857306,
                         "lng": 106.674167
                     },
                     {
-                        "name": "Tổ Lê Chân: 257 Hai Bà Trưng, P. Lê Chân, Hải Phòng",
+                        "name": "Tổ địa bàn Lê Chân: Số 257 Hai Bà Trưng, phường Lê Chân, TP Hải Phòng",
                         "lat": 20.851583,
                         "lng": 106.673667
                     },
                     {
-                        "name": "Tổ Ngô Quyền: Ngõ 258 Đà Nẵng, Ngô Quyền, Hải Phòng",
+                        "name": "Tổ địa bàn Ngô Quyền: Ngõ 258 Đà Nẵng, Ngô Quyền, Hải Phòng",
                         "lat": 20.857278,
                         "lng": 106.706444
                     }
@@ -134,31 +134,36 @@
                 "type": "duong_bo",
                 "color": "#34A853",
                 "hq": {
-                    "name": "Tổ trung tâm: 281 Lạch Tray, Gia Viên, Hải Phòng",
+                    "name": "Số 281 Lạch Tray, TP Hải Phòng",
                     "lat": 20.831333,
                     "lng": 106.698778
                 },
                 "personnel": 56,
                 "hqs": [
                     {
-                        "name": "Tổ trung tâm: 281 Lạch Tray, Gia Viên, Hải Phòng",
+                        "name": "Trụ sở chính: Số 281 Lạch Tray, TP Hải Phòng",
                         "lat": 20.831333,
                         "lng": 106.698778
                     },
                     {
-                        "name": "Tổ Đồ Sơn: 263 Nguyễn Hữu Cầu, Đồ Sơn, Hải Phòng",
-                        "lat": 20.723417,
-                        "lng": 106.776472
-                    },
-                    {
-                        "name": "Tổ Dương Kinh: 202 đường Đa Phúc, TDP Quảng Luận, Hưng Đạo, Hải Phòng",
+                        "name": "Tổ Dương Kinh: Số 202 đường Đa Phúc, tổ dân phố Quảng Luận, phường Hưng Đạo, TP Hải Phòng",
                         "lat": 20.798389,
                         "lng": 106.658528
                     },
                     {
-                        "name": "Tổ Kiến Thụy: Khu Tắc Giang, Kiến Minh, Hải Phòng",
+                        "name": "Tổ Đồ Sơn: Số 263 Nguyễn Hữu Cầu, phường Đồ Sơn, TP Hải Phòng",
+                        "lat": 20.723417,
+                        "lng": 106.776472
+                    },
+                    {
+                        "name": "Tổ Kiến Thụy: Khu Tắc Giang, xã Kiến Minh, TP Hải Phòng",
                         "lat": 20.755194,
                         "lng": 106.675944
+                    },
+                    {
+                        "name": "Tổ Tiên Lãng: Số 160, Đường 354, khu 3, xã Tiên Lãng",
+                        "lat": 20.728639,
+                        "lng": 106.558333
                     }
                 ]
             },
@@ -169,16 +174,21 @@
                 "type": "duong_bo",
                 "color": "#FA7B17",
                 "hq": {
-                    "name": "541 Hùng Vương, Hồng Bàng, Hải Phòng",
+                    "name": "Số 541 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
                     "lat": 20.889694,
                     "lng": 106.604083
                 },
                 "personnel": 32,
                 "hqs": [
                     {
-                        "name": "541 Hùng Vương, Hồng Bàng, Hải Phòng",
+                        "name": "Trụ sở chính: Số 541 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
                         "lat": 20.889694,
                         "lng": 106.604083
+                    },
+                    {
+                        "name": "Trụ sở (không dùng): 28 Ký Con, Hồng Bàng, HP",
+                        "lat": 20.855639,
+                        "lng": 106.674306
                     }
                 ]
             },
@@ -189,14 +199,19 @@
                 "type": "duong_bo",
                 "color": "#EA4335",
                 "hq": {
-                    "name": "Tổ Cát Hải: Thôn Bến, đặc khu Cát Hải, Hải Phòng",
-                    "lat": 20.753028,
-                    "lng": 107.013583
+                    "name": "Số 5 Mạc Thái Tổ, Đông Hải, TP Hải Phòng",
+                    "lat": 20.842556,
+                    "lng": 106.755778
                 },
                 "personnel": 51,
                 "hqs": [
                     {
-                        "name": "Tổ Cát Hải: Thôn Bến, đặc khu Cát Hải, Hải Phòng",
+                        "name": "Trụ sở chính: Số 5 Mạc Thái Tổ, Đông Hải, TP Hải Phòng",
+                        "lat": 20.842556,
+                        "lng": 106.755778
+                    },
+                    {
+                        "name": "Tổ địa bàn Cát Hải: Thôn Bến, đặc khu Cát Hải, TP Hải Phòng",
                         "lat": 20.753028,
                         "lng": 107.013583
                     }
@@ -209,91 +224,36 @@
                 "type": "duong_bo",
                 "color": "#A142F4",
                 "hq": {
-                    "name": "Trụ sở chính: KM58+900 QL5, P. Ái Quốc, Hải Phòng",
+                    "name": "Km 58+900 Quốc lộ 5, phường Ái Quốc, TP Hải Phòng",
                     "lat": 20.967028,
                     "lng": 106.377028
                 },
                 "personnel": 84,
                 "hqs": [
                     {
-                        "name": "Trụ sở chính: KM58+900 QL5, P. Ái Quốc, Hải Phòng",
+                        "name": "Trụ sở chính: Km 58+900 Quốc lộ 5, phường Ái Quốc, TP Hải Phòng",
                         "lat": 20.967028,
                         "lng": 106.377028
                     },
                     {
-                        "name": "Tổ 1: 35 ĐL Hồ Chí Minh, P. Thành Đông, Hải Phòng",
+                        "name": "Tổ 1: Số 25 Đại lộ Hồ Chí Minh, phường Thành Đông, TP Hải Phòng",
                         "lat": 20.938917,
                         "lng": 106.327139
                     },
                     {
-                        "name": "Tổ 2: 25 đường Phượng Hoàng, P. Trần Hưng Đạo, Hải Phòng",
+                        "name": "Tổ 2: Số 25 đường Phượng Hoàng, phường Trần Hưng Đạo, TP Hải Phòng",
                         "lat": 21.118944,
                         "lng": 106.392583
                     },
                     {
-                        "name": "Tổ 3: Đường Đinh Tiên Hoàng, khu 1, xã Kẻ Sặt, Hải Phòng",
+                        "name": "Tổ 3: Đường Đinh Tiên Hoàng, khu 1, xã Kẻ Sặt, TP Hải Phòng",
                         "lat": 20.901167,
                         "lng": 106.157444
                     },
                     {
-                        "name": "Tổ 4 Gia Lộc: 185 đường Lê Thanh Nghị, xã Gia Lộc, Hải Phòng",
+                        "name": "Tổ 4 (Gia Lộc): Số 185 đường Lê Thanh Nghị, xã Gia Lộc, TP Hải Phòng",
                         "lat": 20.866306,
                         "lng": 106.293889
-                    },
-                    {
-                        "name": "Tổ 4 Tứ Kỳ: Km 17 đường TL391, xã Tứ Kỳ, Hải Phòng",
-                        "lat": null,
-                        "lng": null
-                    }
-                ]
-            },
-            {
-                "id": "tram_an_hung",
-                "name": "Trạm CSGT An Hưng",
-                "shortName": "Tr.AH",
-                "type": "duong_bo",
-                "color": "#E91E63",
-                "hq": {
-                    "name": "Tổ An Dương: Số 6, Đường 351, An Dương, Hải Phòng",
-                    "lat": 20.864944,
-                    "lng": 106.613917
-                },
-                "personnel": 60,
-                "hqs": [
-                    {
-                        "name": "Tổ An Dương: Số 6, Đường 351, An Dương, Hải Phòng",
-                        "lat": 20.864944,
-                        "lng": 106.613917
-                    },
-                    {
-                        "name": "Tổ Kiến An: 702 Trần Nhân Tông, Kiến An, Hải Phòng",
-                        "lat": 20.808806,
-                        "lng": 106.640278
-                    }
-                ]
-            },
-            {
-                "id": "tram_luu_kiem",
-                "name": "Trạm CSGT Lưu Kiếm",
-                "shortName": "Tr.LK",
-                "type": "duong_bo",
-                "color": "#FF5722",
-                "hq": {
-                    "name": "Km9+400 QL10, P. Lưu Kiếm, Hải Phòng",
-                    "lat": 20.983444,
-                    "lng": 106.672361
-                },
-                "personnel": 47,
-                "hqs": [
-                    {
-                        "name": "Km9+400 QL10, P. Lưu Kiếm, Hải Phòng",
-                        "lat": 20.983444,
-                        "lng": 106.672361
-                    },
-                    {
-                        "name": "Tổ Thủy Nguyên: 78 đường 25/10, P. Thủy Nguyên, Hải Phòng",
-                        "lat": 20.918000,
-                        "lng": 106.673222
                     }
                 ]
             },
@@ -304,104 +264,101 @@
                 "type": "duong_bo",
                 "color": "#795548",
                 "hq": {
-                    "name": "Tổ trung tâm: Km35+350 QL10, xã An Quang, Hải Phòng",
+                    "name": "Km 35+350 Quốc lộ 10, xã An Quang, TP Hải Phòng",
                     "lat": 20.688222,
                     "lng": 106.479972
                 },
                 "personnel": 61,
                 "hqs": [
                     {
-                        "name": "Tổ trung tâm: Km35+350 QL10, xã An Quang, Hải Phòng",
+                        "name": "Trụ sở chính: Km 35+350 Quốc lộ 10, xã An Quang, TP Hải Phòng",
                         "lat": 20.688222,
                         "lng": 106.479972
                     },
                     {
-                        "name": "Tổ An Lão: Số 2 đường Ngô Quyền, xã An Lão, Hải Phòng",
-                        "lat": 20.821194,
-                        "lng": 106.556250
-                    },
-                    {
-                        "name": "Tổ Vĩnh Bảo: Số 21 đường 20/8, xã Vĩnh Bảo, Hải Phòng",
+                        "name": "Tổ Vĩnh Bảo: Số 21 đường 20/8, xã Vĩnh Bảo, TP Hải Phòng",
                         "lat": 20.688212,
                         "lng": 106.479981
                     },
                     {
-                        "name": "Tổ Tiên Lãng: Số 160 Đường 354, khu 3, xã Tiên Lãng, Hải Phòng",
-                        "lat": 20.728639,
-                        "lng": 106.558333
+                        "name": "Tổ An Lão: Số 2 đường Ngô Quyền, xã An Lão, TP Hải Phòng",
+                        "lat": 20.821194,
+                        "lng": 106.556250
                     }
                 ]
             },
             {
-                "id": "tram_hong_an",
-                "name": "Trạm CSGT Hồng An",
-                "shortName": "Tr.HA",
+                "id": "tram_luu_kiem",
+                "name": "Trạm CSGT Lưu Kiếm",
+                "shortName": "Tr.LK",
                 "type": "duong_bo",
-                "color": "#8D6E63",
+                "color": "#FF5722",
                 "hq": {
-                    "name": "Km83+220 Quốc lộ 5, P. Hồng An, Hải Phòng",
+                    "name": "Km 9+400 Quốc lộ 10, TP Hải Phòng",
+                    "lat": 20.983444,
+                    "lng": 106.672361
+                },
+                "personnel": 47,
+                "hqs": [
+                    {
+                        "name": "Trụ sở chính: Km 9+400 Quốc lộ 10, TP Hải Phòng",
+                        "lat": 20.983444,
+                        "lng": 106.672361
+                    },
+                    {
+                        "name": "Tổ Thủy Nguyên: Số 78 đường 25/10, TP Hải Phòng",
+                        "lat": 20.918000,
+                        "lng": 106.673222
+                    }
+                ]
+            },
+            {
+                "id": "tram_an_hung",
+                "name": "Trạm CSGT An Hưng",
+                "shortName": "Tr.AH",
+                "type": "duong_bo",
+                "color": "#E91E63",
+                "hq": {
+                    "name": "Km83+220 Quốc lộ 5, Phường Hồng An, TP Hải Phòng",
                     "lat": 20.905472,
                     "lng": 106.575250
+                },
+                "personnel": 58,
+                "hqs": [
+                    {
+                        "name": "Trụ sở chính: Km83+220 Quốc lộ 5, Phường Hồng An, TP Hải Phòng",
+                        "lat": 20.905472,
+                        "lng": 106.575250
+                    },
+                    {
+                        "name": "Tổ An Dương: Số 6 đường 351, huyện An Dương, TP Hải Phòng",
+                        "lat": 20.864944,
+                        "lng": 106.613917
+                    },
+                    {
+                        "name": "Tổ Kiến An: Số 702 Trần Nhân Tông, phường Kiến An, TP Hải Phòng",
+                        "lat": 20.808806,
+                        "lng": 106.640278
+                    }
+                ]
+            },
+            {
+                "id": "dctp",
+                "name": "Đội phòng ngừa, đấu tranh chống tội phạm trên đường thuỷ",
+                "shortName": "ĐTP",
+                "type": "duong_thuy",
+                "color": "#5C6BC0",
+                "hq": {
+                    "name": "Số 41 Tam Bạc, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.857306,
+                    "lng": 106.674167
                 },
                 "personnel": 0,
                 "hqs": [
                     {
-                        "name": "Km83+220 Quốc lộ 5, P. Hồng An, Hải Phòng",
-                        "lat": 20.905472,
-                        "lng": 106.575250
-                    }
-                ]
-            },
-            {
-                "id": "tram_dt_an_duong",
-                "name": "Trạm CSĐT An Dương",
-                "shortName": "Tr.AD",
-                "type": "duong_thuy",
-                "color": "#1E88E5",
-                "hq": {
-                    "name": "An Dương",
-                    "lat": null,
-                    "lng": null
-                },
-                "personnel": 16
-            },
-            {
-                "id": "tram_dt_may_chi",
-                "name": "Trạm CSĐT Máy Chỉ",
-                "shortName": "Tr.MC",
-                "type": "duong_thuy",
-                "color": "#7E57C2",
-                "hq": {
-                    "name": "Số 1 Chương Dương, Hồng Bàng, Hải Phòng",
-                    "lat": 20.864667,
-                    "lng": 106.670083
-                },
-                "personnel": 14,
-                "hqs": [
-                    {
-                        "name": "Số 1 Chương Dương, Hồng Bàng, Hải Phòng",
-                        "lat": 20.864667,
-                        "lng": 106.670083
-                    }
-                ]
-            },
-            {
-                "id": "tram_dt_bach_dang",
-                "name": "Trạm CSĐT Bạch Đằng",
-                "shortName": "Tr.BĐ",
-                "type": "duong_thuy",
-                "color": "#0277BD",
-                "hq": {
-                    "name": "TDP 4, Nam Triệu, Hải Phòng",
-                    "lat": 20.937500,
-                    "lng": 106.764778
-                },
-                "personnel": 16,
-                "hqs": [
-                    {
-                        "name": "TDP 4, Nam Triệu, Hải Phòng",
-                        "lat": 20.937500,
-                        "lng": 106.764778
+                        "name": "Số 41 Tam Bạc, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.857306,
+                        "lng": 106.674167
                     }
                 ]
             },
@@ -412,16 +369,26 @@
                 "type": "duong_thuy",
                 "color": "#00897B",
                 "hq": {
-                    "name": "Bờ trái sông Cấm, gần bến phà Máy Chai, P. Ngô Quyền, Hải Phòng",
+                    "name": "Bờ trái sông Cấm, gần bến phà Máy Chai, phường Ngô Quyền, TP Hải Phòng",
                     "lat": 20.875472,
                     "lng": 106.705333
                 },
                 "personnel": 45,
                 "hqs": [
                     {
-                        "name": "Bờ trái sông Cấm, gần bến phà Máy Chai, P. Ngô Quyền, Hải Phòng",
+                        "name": "Phân đội 1 (dùng nhờ trụ sở công ty): Bến đò nhà đèn, Đông Hải, TP Hải Phòng",
+                        "lat": 20.846417,
+                        "lng": 106.761528
+                    },
+                    {
+                        "name": "Phân đội 2 (trụ sở chính): Bờ trái sông Cấm, gần bến phà Máy Chai, phường Ngô Quyền, TP Hải Phòng",
                         "lat": 20.875472,
                         "lng": 106.705333
+                    },
+                    {
+                        "name": "Phân đội 3 (dùng nhờ bến đỗ tàu): Số 592, Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.879472,
+                        "lng": 106.629833
                     }
                 ]
             },
@@ -432,14 +399,14 @@
                 "type": "duong_thuy",
                 "color": "#0D47A1",
                 "hq": {
-                    "name": "Tân Thắng, An Hưng, Hải Phòng",
+                    "name": "Tân Thắng, xã An Hưng, TP Hải Phòng",
                     "lat": 20.763500,
                     "lng": 106.549917
                 },
                 "personnel": 18,
                 "hqs": [
                     {
-                        "name": "Tân Thắng, An Hưng, Hải Phòng",
+                        "name": "Tân Thắng, xã An Hưng, TP Hải Phòng",
                         "lat": 20.763500,
                         "lng": 106.549917
                     }
@@ -452,40 +419,88 @@
                 "type": "duong_thuy",
                 "color": "#304FFE",
                 "hq": {
-                    "name": "Tổ trung tâm: 106A Nguyễn Lương Bằng, P. Thành Đông, Hải Phòng",
+                    "name": "Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
                     "lat": 20.938167,
                     "lng": 106.316861
                 },
                 "personnel": 35,
                 "hqs": [
                     {
-                        "name": "Tổ trung tâm: 106A Nguyễn Lương Bằng, P. Thành Đông, Hải Phòng",
+                        "name": "Trụ sở chính: Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
                         "lat": 20.938167,
                         "lng": 106.316861
                     },
                     {
-                        "name": "Tổ Kênh Đồng: Thôn Hạ Vĩnh, xã Hà Đông, Hải Phòng",
+                        "name": "Tổ Kênh Đồng: Thôn Hạ Vĩnh, xã Hà Đông, TP Hải Phòng",
                         "lat": 20.846889,
                         "lng": 106.486306
                     },
                     {
-                        "name": "Tổ Phú Thứ: KDC Vạn Chánh, P. Nhị Chiểu, Hải Phòng",
+                        "name": "Tổ Phú Thứ: Khu dân cư Vạn Chánh, phường Nhị Chiểu, TP Hải Phòng",
                         "lat": 21.013611,
                         "lng": 106.546083
                     }
                 ]
             },
             {
-                "id": "dctp",
-                "name": "Đội phòng ngừa, đấu tranh chống tội phạm trên đường thuỷ",
-                "shortName": "ĐTP",
+                "id": "tram_dt_bach_dang",
+                "name": "Trạm CSĐT Bạch Đằng",
+                "shortName": "Tr.BĐ",
                 "type": "duong_thuy",
-                "color": "#5C6BC0",
+                "color": "#0277BD",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Tổ dân phố 4, Nam Triệu, TP Hải Phòng",
+                    "lat": 20.937500,
+                    "lng": 106.764778
+                },
+                "personnel": 16,
+                "hqs": [
+                    {
+                        "name": "Tổ dân phố 4, Nam Triệu, TP Hải Phòng",
+                        "lat": 20.937500,
+                        "lng": 106.764778
+                    }
+                ]
+            },
+            {
+                "id": "tram_dt_may_chi",
+                "name": "Trạm CSĐT Máy Chỉ",
+                "shortName": "Tr.MC",
+                "type": "duong_thuy",
+                "color": "#7E57C2",
+                "hq": {
+                    "name": "Số 1 Chương Dương, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.864667,
+                    "lng": 106.670083
+                },
+                "personnel": 14,
+                "hqs": [
+                    {
+                        "name": "Số 1 Chương Dương, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.864667,
+                        "lng": 106.670083
+                    }
+                ]
+            },
+            {
+                "id": "tram_dt_an_duong",
+                "name": "Trạm CSĐT An Dương",
+                "shortName": "Tr.AD",
+                "type": "duong_thuy",
+                "color": "#1E88E5",
+                "hq": {
+                    "name": "Lán Bè, An Biên, TP Hải Phòng",
+                    "lat": 20.844528,
+                    "lng": 106.658778
+                },
+                "personnel": 16,
+                "hqs": [
+                    {
+                        "name": "Lán Bè, An Biên, TP Hải Phòng",
+                        "lat": 20.844528,
+                        "lng": 106.658778
+                    }
+                ]
             }
         ]
     },
@@ -499,10 +514,18 @@
                 "type": "van_phong",
                 "color": "#A1887F",
                 "hq": {
-                    "name": "Trụ sở Phòng CSGT",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.858639,
+                    "lng": 106.682833
+                },
+                "personnel": 20,
+                "hqs": [
+                    {
+                        "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.858639,
+                        "lng": 106.682833
+                    }
+                ]
             },
             {
                 "id": "qh_tuyen_truyen",
@@ -511,10 +534,23 @@
                 "type": "van_phong",
                 "color": "#78909C",
                 "hq": {
-                    "name": "Trụ sở Phòng CSGT",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.858639,
+                    "lng": 106.682833
+                },
+                "personnel": 18,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.858639,
+                        "lng": 106.682833
+                    },
+                    {
+                        "name": "Trụ sở 2: Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
+                        "lat": 20.938167,
+                        "lng": 106.316861
+                    }
+                ]
             },
             {
                 "id": "qh_dang_ky",
@@ -523,10 +559,23 @@
                 "type": "van_phong",
                 "color": "#9AA0A6",
                 "hq": {
-                    "name": "Trụ sở Phòng CSGT",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.858639,
+                    "lng": 106.682833
+                },
+                "personnel": 18,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Số 14 Phan Chu Trinh, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.858639,
+                        "lng": 106.682833
+                    },
+                    {
+                        "name": "Trụ sở 2: Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
+                        "lat": 20.938167,
+                        "lng": 106.316861
+                    }
+                ]
             },
             {
                 "id": "qh_sat_hach",
@@ -535,10 +584,23 @@
                 "type": "van_phong",
                 "color": "#BDBDBD",
                 "hq": {
-                    "name": "Trụ sở Phòng CSGT",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Số 119 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.868806,
+                    "lng": 106.655861
+                },
+                "personnel": 28,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Số 119 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.868806,
+                        "lng": 106.655861
+                    },
+                    {
+                        "name": "Trụ sở 2: Km 57+600 Quốc lộ 5, phường Ái Quốc, TP Hải Phòng",
+                        "lat": 20.959194,
+                        "lng": 106.368056
+                    }
+                ]
             },
             {
                 "id": "qh_db1",
@@ -547,10 +609,23 @@
                 "type": "duong_bo",
                 "color": "#4285F4",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Km 9+400 Quốc lộ 10, TP Hải Phòng",
+                    "lat": 20.983444,
+                    "lng": 106.672361
+                },
+                "personnel": 55,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Km 9+400 Quốc lộ 10, TP Hải Phòng",
+                        "lat": 20.983444,
+                        "lng": 106.672361
+                    },
+                    {
+                        "name": "Trụ sở 2: Số 78 đường 25/10, TP Hải Phòng",
+                        "lat": 20.918000,
+                        "lng": 106.673222
+                    }
+                ]
             },
             {
                 "id": "qh_db2",
@@ -559,10 +634,58 @@
                 "type": "duong_bo",
                 "color": "#34A853",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Số 41 Tam Bạc, phường Hồng Bàng, TP Hải Phòng",
+                    "lat": 20.857306,
+                    "lng": 106.674167
+                },
+                "personnel": 82,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Số 41 Tam Bạc, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.857306,
+                        "lng": 106.674167
+                    },
+                    {
+                        "name": "Trụ sở 2: Số 257 Hai Bà Trưng, phường Lê Chân, TP Hải Phòng",
+                        "lat": 20.851583,
+                        "lng": 106.673667
+                    },
+                    {
+                        "name": "Trụ sở 3: Ngõ 258 Đà Nẵng, Ngô Quyền, Hải Phòng",
+                        "lat": 20.857278,
+                        "lng": 106.706444
+                    },
+                    {
+                        "name": "Trụ sở 4: Số 281 Lạch Tray, TP Hải Phòng",
+                        "lat": 20.831333,
+                        "lng": 106.698778
+                    },
+                    {
+                        "name": "Trụ sở 5: Số 541 Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.889694,
+                        "lng": 106.604083
+                    },
+                    {
+                        "name": "Trụ sở 6: 28 Ký Con, Hồng Bàng, HP",
+                        "lat": 20.855639,
+                        "lng": 106.674306
+                    },
+                    {
+                        "name": "Trụ sở 7: Km83+220 Quốc lộ 5, Phường Hồng An, TP Hải Phòng",
+                        "lat": 20.905472,
+                        "lng": 106.575250
+                    },
+                    {
+                        "name": "Trụ sở 8: Số 6 đường 351, huyện An Dương, TP Hải Phòng",
+                        "lat": 20.864944,
+                        "lng": 106.613917
+                    },
+                    {
+                        "name": "Trụ sở 9: Số 702 Trần Nhân Tông, phường Kiến An, TP Hải Phòng",
+                        "lat": 20.808806,
+                        "lng": 106.640278
+                    }
+                ]
             },
             {
                 "id": "qh_db3",
@@ -571,10 +694,43 @@
                 "type": "duong_bo",
                 "color": "#FA7B17",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Số 5 Mạc Thái Tổ, Đông Hải, TP Hải Phòng",
+                    "lat": 20.842556,
+                    "lng": 106.755778
+                },
+                "personnel": 60,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Số 5 Mạc Thái Tổ, Đông Hải, TP Hải Phòng",
+                        "lat": 20.842556,
+                        "lng": 106.755778
+                    },
+                    {
+                        "name": "Trụ sở 2: Thôn Bến, đặc khu Cát Hải, TP Hải Phòng",
+                        "lat": 20.753028,
+                        "lng": 107.013583
+                    },
+                    {
+                        "name": "Trụ sở 3: Số 202 đường Đa Phúc, tổ dân phố Quảng Luận, phường Hưng Đạo, TP Hải Phòng",
+                        "lat": 20.798389,
+                        "lng": 106.658528
+                    },
+                    {
+                        "name": "Trụ sở 4: Số 263 Nguyễn Hữu Cầu, phường Đồ Sơn, TP Hải Phòng",
+                        "lat": 20.723417,
+                        "lng": 106.776472
+                    },
+                    {
+                        "name": "Trụ sở 5: Khu Tắc Giang, xã Kiến Minh, TP Hải Phòng",
+                        "lat": 20.755194,
+                        "lng": 106.675944
+                    },
+                    {
+                        "name": "Trụ sở 6: Số 160, Đường 354, khu 3, xã Tiên Lãng",
+                        "lat": 20.728639,
+                        "lng": 106.558333
+                    }
+                ]
             },
             {
                 "id": "qh_db4",
@@ -583,10 +739,28 @@
                 "type": "duong_bo",
                 "color": "#EA4335",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Km 35+350 Quốc lộ 10, xã An Quang, TP Hải Phòng",
+                    "lat": 20.688222,
+                    "lng": 106.479972
+                },
+                "personnel": 55,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Km 35+350 Quốc lộ 10, xã An Quang, TP Hải Phòng",
+                        "lat": 20.688222,
+                        "lng": 106.479972
+                    },
+                    {
+                        "name": "Trụ sở 2: Số 21 đường 20/8, xã Vĩnh Bảo, TP Hải Phòng",
+                        "lat": 20.688212,
+                        "lng": 106.479981
+                    },
+                    {
+                        "name": "Trụ sở 3: Số 2 đường Ngô Quyền, xã An Lão, TP Hải Phòng",
+                        "lat": 20.821194,
+                        "lng": 106.556250
+                    }
+                ]
             },
             {
                 "id": "qh_db5",
@@ -595,10 +769,38 @@
                 "type": "duong_bo",
                 "color": "#A142F4",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Km 58+900 Quốc lộ 5, phường Ái Quốc, TP Hải Phòng",
+                    "lat": 20.967028,
+                    "lng": 106.377028
+                },
+                "personnel": 58,
+                "hqs": [
+                    {
+                        "name": "Trụ sở chính: Km 58+900 Quốc lộ 5, phường Ái Quốc, TP Hải Phòng",
+                        "lat": 20.967028,
+                        "lng": 106.377028
+                    },
+                    {
+                        "name": "Tổ 1: Số 25 Đại lộ Hồ Chí Minh, phường Thành Đông, TP Hải Phòng",
+                        "lat": 20.938917,
+                        "lng": 106.327139
+                    },
+                    {
+                        "name": "Tổ 2: Số 25 đường Phượng Hoàng, phường Trần Hưng Đạo, TP Hải Phòng",
+                        "lat": 21.118944,
+                        "lng": 106.392583
+                    },
+                    {
+                        "name": "Tổ 3: Đường Đinh Tiên Hoàng, khu 1, xã Kẻ Sặt, TP Hải Phòng",
+                        "lat": 20.901167,
+                        "lng": 106.157444
+                    },
+                    {
+                        "name": "Tổ 4 (Gia Lộc): Số 185 đường Lê Thanh Nghị, xã Gia Lộc, TP Hải Phòng",
+                        "lat": 20.866306,
+                        "lng": 106.293889
+                    }
+                ]
             },
             {
                 "id": "qh_dt1",
@@ -607,10 +809,38 @@
                 "type": "duong_thuy",
                 "color": "#24C1E0",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Bờ trái sông Cấm, gần bến phà Máy Chai, phường Ngô Quyền, TP Hải Phòng",
+                    "lat": 20.875472,
+                    "lng": 106.705333
+                },
+                "personnel": 34,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1 (dùng nhờ trụ sở công ty): Bến đò nhà đèn, Đông Hải, TP Hải Phòng",
+                        "lat": 20.846417,
+                        "lng": 106.761528
+                    },
+                    {
+                        "name": "Trụ sở 2 (trụ sở chính): Bờ trái sông Cấm, gần bến phà Máy Chai, phường Ngô Quyền, TP Hải Phòng",
+                        "lat": 20.875472,
+                        "lng": 106.705333
+                    },
+                    {
+                        "name": "Trụ sở 3 (dùng nhờ bến đỗ tàu): Số 592, Hùng Vương, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.879472,
+                        "lng": 106.629833
+                    },
+                    {
+                        "name": "Trụ sở 4: Số 1 Chương Dương, phường Hồng Bàng, TP Hải Phòng",
+                        "lat": 20.864667,
+                        "lng": 106.670083
+                    },
+                    {
+                        "name": "Trụ sở 5: Lán Bè, An Biên, TP Hải Phòng",
+                        "lat": 20.844528,
+                        "lng": 106.658778
+                    }
+                ]
             },
             {
                 "id": "qh_dt2",
@@ -619,10 +849,28 @@
                 "type": "duong_thuy",
                 "color": "#12B5CB",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Tân Thắng, xã An Hưng, TP Hải Phòng",
+                    "lat": 20.763500,
+                    "lng": 106.549917
+                },
+                "personnel": 34,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Tân Thắng, xã An Hưng, TP Hải Phòng",
+                        "lat": 20.763500,
+                        "lng": 106.549917
+                    },
+                    {
+                        "name": "Trụ sở 2: Số 106A Nguyễn Lương Bằng, Thành Đông, TP Hải Phòng",
+                        "lat": 20.938167,
+                        "lng": 106.316861
+                    },
+                    {
+                        "name": "Trụ sở 3: Thôn Hạ Vĩnh, xã Hà Đông, TP Hải Phòng",
+                        "lat": 20.846889,
+                        "lng": 106.486306
+                    }
+                ]
             },
             {
                 "id": "qh_dtram",
@@ -631,10 +879,23 @@
                 "type": "duong_thuy",
                 "color": "#0097A7",
                 "hq": {
-                    "name": "Chưa cập nhật",
-                    "lat": null,
-                    "lng": null
-                }
+                    "name": "Tổ dân phố 4, Nam Triệu, TP Hải Phòng",
+                    "lat": 20.937500,
+                    "lng": 106.764778
+                },
+                "personnel": 30,
+                "hqs": [
+                    {
+                        "name": "Trụ sở 1: Tổ dân phố 4, Nam Triệu, TP Hải Phòng",
+                        "lat": 20.937500,
+                        "lng": 106.764778
+                    },
+                    {
+                        "name": "Trụ sở 2: Khu dân cư Vạn Chánh, phường Nhị Chiểu, TP Hải Phòng",
+                        "lat": 21.013611,
+                        "lng": 106.546083
+                    }
+                ]
             }
         ]
     }

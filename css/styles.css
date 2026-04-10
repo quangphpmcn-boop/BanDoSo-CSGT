@@ -1672,6 +1672,50 @@ button:focus-visible {
   border-color: var(--primary);
 }
 
+/* ── HQ Preset Select Dropdown ── */
+.ip-hq-preset-select {
+  width: 100%;
+  padding: 6px 10px;
+  margin-bottom: 10px;
+  border: 1.5px solid var(--outline-variant);
+  border-radius: var(--radius-sm);
+  background: var(--surface-container-lowest);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--on-surface);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2390A4AE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 28px;
+}
+
+.ip-hq-preset-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(121, 89, 0, 0.1);
+}
+
+.ip-hq-preset-select:hover {
+  border-color: var(--primary);
+}
+
+.ip-hq-preset-select optgroup {
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--on-surface);
+  padding: 4px 0;
+}
+
+.ip-hq-preset-select option {
+  font-weight: 400;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+}
+
 /* ── Accessibility: Focus Visible ── */
 button:focus-visible,
 a:focus-visible,

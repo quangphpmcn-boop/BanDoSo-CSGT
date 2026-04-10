@@ -58,6 +58,50 @@ let selectedRouteLine = null;      // highlighted route during add
 let editStatusBarEl = null;        // status bar element
 let hqMarker = null;               // draggable HQ marker
 
+// ── Default HQ Locations (preset choices for quick selection) ──
+const DEFAULT_HQ_LOCATIONS = [
+  // ── Trụ sở Đội Văn Phòng ──
+  { group: 'Trụ sở Đội Văn Phòng', name: '14 Phan Chu Trinh - Hồng Bàng - Hải Phòng', lat: 20.858639, lng: 106.682833 },
+  { group: 'Trụ sở Đội Văn Phòng', name: '106A Nguyễn Lương Bằng, P. Thành Đông, TP Hải Phòng', lat: 20.938167, lng: 106.316861 },
+  { group: 'Trụ sở Đội Văn Phòng', name: 'Km 57+600 Quốc lộ 5, P. Ái Quốc, TP Hải Phòng', lat: 20.959194, lng: 106.368056 },
+  { group: 'Trụ sở Đội Văn Phòng', name: '119 Hùng Vương, Hồng Bàng, Hải Phòng', lat: 20.868806, lng: 106.655861 },
+
+  // ── Trụ sở Đội, Trạm CSGT đường bộ ──
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Ninh Tĩnh, Ninh Giang', lat: 20.733361, lng: 106.397278 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Km35+350 QL10, xã An Quang, Hải Phòng', lat: 20.688222, lng: 106.479972 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 21, đường 20/8, xã Vĩnh Bảo, HP', lat: 20.688212, lng: 106.479981 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 2 đường Ngô Quyền, xã An Lão, HP', lat: 20.821194, lng: 106.556250 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 78 đường 25/10, P. Thủy Nguyên, HP', lat: 20.918000, lng: 106.673222 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Km9+400 QL10, P. Lưu Kiếm, HP', lat: 20.983444, lng: 106.672361 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '702 Trần Nhân Tông, Kiến An, Hải Phòng', lat: 20.846500, lng: 106.761806 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 6, Đường 351, An Dương, Hải Phòng', lat: 20.864944, lng: 106.613917 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Km83+220 Quốc lộ 5, P. Hồng An, TP Hải Phòng', lat: 20.905472, lng: 106.575250 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '541 Hùng Vương, Hồng Bàng, HP', lat: 20.889694, lng: 106.604083 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '28 Ký Con, Hồng Bàng, HP', lat: 20.855639, lng: 106.674306 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '281 Lạch Tray, Gia Viên, HP', lat: 20.831333, lng: 106.698778 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 160, Đường 354, khu 3, xã Tiên Lãng', lat: 20.728639, lng: 106.558333 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Khu Tắc Giang, Kiến Minh, HP', lat: null, lng: null },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '202 đường Đa Phúc, TDP Quảng Luận, Hưng Đạo, HP', lat: 20.798389, lng: 106.658528 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '263 Nguyễn Hữu Cầu, Đồ Sơn, HP', lat: 20.723417, lng: 106.776472 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Ngõ 258 Đà Nẵng, Ngô Quyền, Hải Phòng', lat: 20.857278, lng: 106.706444 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 257 Hai Bà Trưng, P. Lê Chân, TP Hải Phòng', lat: 20.851583, lng: 106.673667 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '41 Tam Bạc, Hồng Bàng, HP', lat: 20.857306, lng: 106.674167 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Số 185 đường Lê Thanh Nghị, xã Gia Lộc, TP Hải Phòng', lat: 20.866306, lng: 106.293889 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '35 ĐL Hồ Chí Minh - P. Thành Đông - TP Hải Phòng', lat: 20.938917, lng: 106.327139 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: '25 đường Phượng Hoàng, P. Trần Hưng Đạo, TP Hải Phòng', lat: 21.118944, lng: 106.392583 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'KM58+900 QL5, P. Ái Quốc, Hải Phòng', lat: 20.967028, lng: 106.377028 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Đường Đinh Tiên Hoàng, khu 1, xã Kẻ Sặt, TP Hải Phòng', lat: 20.901167, lng: 106.157444 },
+  { group: 'Trụ sở Đội/Trạm CSGT đường bộ', name: 'Thôn Bến, đặc khu Cát Hải, Hải Phòng', lat: 20.753028, lng: 107.013583 },
+
+  // ── Trụ sở Đội, Trạm CSĐT ──
+  { group: 'Trụ sở Đội/Trạm CSĐT', name: 'Số 1 Chương Dương', lat: 20.864667, lng: 106.670083 },
+  { group: 'Trụ sở Đội/Trạm CSĐT', name: 'TDP 4, Nam Triệu, Hải Phòng', lat: 20.937500, lng: 106.764778 },
+  { group: 'Trụ sở Đội/Trạm CSĐT', name: 'Thôn Hạ Vĩnh, xã Hà Đông, TP Hải Phòng', lat: 20.846889, lng: 106.486306 },
+  { group: 'Trụ sở Đội/Trạm CSĐT', name: 'Tân Thắng, An Hưng, Hải Phòng', lat: 20.763500, lng: 106.549917 },
+  { group: 'Trụ sở Đội/Trạm CSĐT', name: 'Bờ trái sông Cấm, gần bến phà Máy Chai, P. Ngô Quyền, HP', lat: 20.875472, lng: 106.705333 },
+  { group: 'Trụ sở Đội/Trạm CSĐT', name: 'KDC Vạn Chánh, P. Nhị Chiểu, TP Hải Phòng', lat: 21.013611, lng: 106.546083 }
+];
+
 // Pinned roads: { unitId: Set<osm_id> } — persisted in localStorage
 function getPinnedRoads(unitId) {
   try {
@@ -2340,6 +2384,46 @@ function removeHqLocation(unitId, idx) {
   }
 }
 
+function applyDefaultHq(unitId, hqIdx, defaultIdx) {
+  const def = DEFAULT_HQ_LOCATIONS[defaultIdx];
+  if (!def) return;
+  const hqs = getUnitHqs(unitId);
+  if (!hqs[hqIdx]) return;
+  hqs[hqIdx].name = def.name;
+  hqs[hqIdx].lat = def.lat;
+  hqs[hqIdx].lng = def.lng;
+  saveUnitHqs(unitId, hqs);
+  const units = getActiveUnits();
+  const unit = units.find(u => u.id === unitId);
+  if (unit) {
+    _showHqMarker(unit);
+    showInfoPanelEditable(unit);
+    // Pan to selected location if coordinates exist
+    if (def.lat != null && def.lng != null) {
+      map.setView([def.lat, def.lng], 15, { animate: true });
+    }
+  }
+  showEditToast(`📍 Đã chọn: ${def.name}`);
+}
+
+function _buildHqPresetOptions() {
+  const groups = {};
+  DEFAULT_HQ_LOCATIONS.forEach((loc, i) => {
+    if (!groups[loc.group]) groups[loc.group] = [];
+    groups[loc.group].push({ ...loc, _idx: i });
+  });
+  let opts = '<option value="">-- Chọn trụ sở mặc định --</option>';
+  for (const [group, items] of Object.entries(groups)) {
+    opts += `<optgroup label="${group}">`;
+    items.forEach(item => {
+      const coordLabel = (item.lat != null) ? ` (${item.lat.toFixed(4)}, ${item.lng.toFixed(4)})` : '';
+      opts += `<option value="${item._idx}">${item.name}${coordLabel}</option>`;
+    });
+    opts += '</optgroup>';
+  }
+  return opts;
+}
+
 // ── Unit data overrides (stored in localStorage) ──
 function getUnitOverrides(unitId) {
   try {
@@ -2384,6 +2468,7 @@ function showInfoPanelEditable(unit) {
     <label class="ip-edit-label">📍 ĐỊA CHỈ TRỤ SỞ (${hqs.length || 0})</label>`;
 
   if (hqs.length > 0) {
+    const presetOpts = _buildHqPresetOptions();
     hqs.forEach((hq, idx) => {
       const addr = (hq.name && hq.name !== 'Chưa cập nhật') ? hq.name : '';
       const removeBtn = hqs.length > 1
@@ -2394,12 +2479,15 @@ function showInfoPanelEditable(unit) {
         <input type="text" class="ip-edit-input ip-hq-input" value="${addr}" placeholder="Nhập địa chỉ trụ sở ${idx + 1}..."
           onchange="(function(){ var hqs=getUnitHqs('${unit.id}'); hqs[${idx}].name=this.value; saveUnitHqs('${unit.id}',hqs); }).call(this)">
         ${removeBtn}
-      </div>`;
+      </div>
+      <select class="ip-hq-preset-select" onchange="if(this.value!=='') applyDefaultHq('${unit.id}', ${idx}, parseInt(this.value)); this.value='';">
+        ${presetOpts}
+      </select>`;
     });
   }
 
   html += `<button class="ip-hq-add-btn" onclick="addNewHqLocation('${unit.id}')">➕ Thêm trụ sở</button>
-    <div class="ip-edit-hint">Bấm 📍 Sửa vị trí đơn vị trên toolbar để kéo marker trên bản đồ</div>
+    <div class="ip-edit-hint">Chọn trụ sở mặc định từ danh sách hoặc kéo marker 📍 trên bản đồ</div>
   </div>`;
 
   // Demographics (read-only)
